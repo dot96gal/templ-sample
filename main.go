@@ -2,16 +2,17 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
-	"github.com/a-h/templ"
+	"github.com/dot96gal/templ-sample/handlers"
 )
 
 func main() {
-	component := hello("John")
-
-	http.Handle("/", templ.Handler(component))
+	http.HandleFunc("GET /", handlers.IndexHandler)
 
 	fmt.Println("Listening on :3000")
-	http.ListenAndServe(":3000", nil)
+	if err := http.ListenAndServe(":3000", nil); err != nil {
+		log.Fatal(err)
+	}
 }

@@ -1,0 +1,20 @@
+package pages
+
+import "github.com/dot96gal/templ-sample/components"
+
+templ IndexPage() {
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="UTF-8"/>
+			<title>index page title</title>
+		</head>
+		<body>
+			@components.Header("index page header")
+			<main>
+				index page content
+			</main>
+			@components.Footer("2024 dot96gal All Rights Reserved.")
+		</body>
+	</html>
+}
