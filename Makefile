@@ -9,7 +9,11 @@ lint:
 .PHONY: test
 test:
 	go test ./...
-	
+
 .PHONY: dev
 dev:
 	go run ./...
+
+.PHONY: air
+air:
+	air -c ./.air.toml
