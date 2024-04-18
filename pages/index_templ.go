@@ -33,7 +33,7 @@ func IndexPage() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<main>index page content</main>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<main data-testid=\"main-component\">index page content</main>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
