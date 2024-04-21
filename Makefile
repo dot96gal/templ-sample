@@ -11,7 +11,7 @@ test:
 	go test ./...
 
 .PHONY: dev
-dev:
+dev: templ-generate
 	go run ./...
 
 .PHONY: air

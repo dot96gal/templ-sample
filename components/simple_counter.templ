@@ -1,0 +1,65 @@
+package components
+
+import "strconv"
+
+css counterStyle() {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: fit-content;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 0.5rem;
+	background-color: #fff;
+}
+
+css countIndicatorStyle() {
+	font-size: 3rem;
+	font-weight: bold;
+}
+
+css countButtonStyle() {
+	margin-top: 1rem;
+	padding: 0.5rem 1rem;
+	border: 1px solid #ccc;
+	border-radius: 0.5rem;
+	background-color: #fff;
+	font-size: 1rem;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+templ SimpleCounter(count int, handlePostPath string) {
+	<div
+		id="counter"
+		class={ counterStyle() }
+	>
+		<span
+			id="count-indicator"
+			class={ countIndicatorStyle() }
+		>
+			{ strconv.Itoa(count) }
+		</span>
+		<button
+			id="count-button-up"
+			class={ countButtonStyle() }
+			hx-post={ handlePostPath }
+			hx-vals='{"operation": "up"}'
+			hx-target="#count-indicator"
+			hx-swap="innerHTML"
+		>
+			Count Up
+		</button>
+		<button
+			id="count-button-down"
+			class={ countButtonStyle() }
+			hx-post={ handlePostPath }
+			hx-vals='{"operation": "down"}'
+			hx-target="#count-indicator"
+			hx-swap="innerHTML"
+		>
+			Count Down
+		</button>
+	</div>
+}

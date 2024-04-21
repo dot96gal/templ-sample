@@ -1,0 +1,70 @@
+package components
+
+templ LitCounter() {
+	<script type="module">
+		import {LitElement, html, css} from '/assets/js/lit-all.min.js';
+		export class SimpleCounter extends LitElement {
+			static properties = {
+				count: {type: Number},
+			};
+			static styles = css`
+				#counter {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					width: fit-content;
+					padding: 20px;
+					border: 1px solid #ccc;
+					border-radius: 0.5rem;
+					background-color: #fff;
+				}
+				#count-indicator {
+					font-size: 3rem;
+					font-weight: bold;
+				}
+				#count-button-up {
+					margin-top: 1rem;
+					padding: 0.5rem 1rem;
+					border: 1px solid #ccc;
+					border-radius: 0.5rem;
+					background-color: #fff;
+					font-size: 1rem;
+					font-weight: bold;
+					cursor: pointer;
+				}
+				#count-button-down {
+					margin-top: 1rem;
+					padding: 0.5rem 1rem;
+					border: 1px solid #ccc;
+					border-radius: 0.5rem;
+					background-color: #fff;
+					font-size: 1rem;
+					font-weight: bold;
+					cursor: pointer;
+				}
+			`;
+			constructor() {
+				super();
+				this.count = 1;
+			}
+			render() {
+				return html`
+					<div id="counter">
+						<span id="count-indicator">${this.count}</span>
+						<button id="count-button-up" @click=${this.countup}>Count Up</button>
+						<button id="count-button-down" @click=${this.countdown}>Count Down</button>
+					</div>
+				`;
+			}
+			countup() {
+				this.count++;
+			}
+			countdown() {
+				this.count--;
+			}
+		}
+		customElements.define("lit-counter", SimpleCounter);
+	</script>
+	<lit-counter></lit-counter>
+}

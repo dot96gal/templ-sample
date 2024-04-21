@@ -1,18 +1,25 @@
 package pages
 
-import "github.com/dot96gal/templ-sample/components"
+import (
+	"github.com/dot96gal/templ-sample/components"
+)
 
-templ IndexPage() {
+templ IndexPage(count int, handlePostPath string) {
 	<!DOCTYPE html>
 	<html>
 		<head>
 			<meta charset="UTF-8"/>
 			<title>index page title</title>
+			<script src="/assets/js/htmx.min.js"></script>
 		</head>
 		<body>
 			@components.Header("index page header")
 			<main data-testid="main-component">
-				index page content
+				<h2>
+					index page content
+				</h2>
+				@components.LitCounter()
+				@components.SimpleCounter(count, handlePostPath)
 			</main>
 			@components.Footer("2024 dot96gal All Rights Reserved.")
 		</body>

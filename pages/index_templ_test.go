@@ -12,7 +12,7 @@ func TestHeader(t *testing.T) {
 	r, w := io.Pipe()
 
 	go func() {
-		_ = IndexPage().Render(context.Background(), w)
+		_ = IndexPage(0, "/").Render(context.Background(), w)
 		_ = w.Close()
 	}()
 
@@ -31,7 +31,7 @@ func TestHeader(t *testing.T) {
 	}
 
 	expected := "index page content"
-	if actual := component.Text(); actual != expected {
+	if actual := component.Find("h2").Text(); actual != expected {
 		t.Errorf("expected %q, got %q", expected, actual)
 	}
 
