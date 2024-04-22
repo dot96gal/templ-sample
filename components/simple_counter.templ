@@ -3,10 +3,12 @@ package components
 import "strconv"
 
 css counterStyle() {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+	display: grid;
+	grid-template-areas: "count-indicator"
+		"count-button-up"
+		"count-button-down";
+	justify-items: center;
+	text-align: center;
 	width: fit-content;
 	padding: 20px;
 	border: 1px solid #ccc;
@@ -15,11 +17,13 @@ css counterStyle() {
 }
 
 css countIndicatorStyle() {
+	grid-area: count-indicator;
 	font-size: 3rem;
 	font-weight: bold;
 }
 
 css countButtonStyle() {
+	width: 100%;
 	margin-top: 1rem;
 	padding: 0.5rem 1rem;
 	border: 1px solid #ccc;
@@ -28,6 +32,14 @@ css countButtonStyle() {
 	font-size: 1rem;
 	font-weight: bold;
 	cursor: pointer;
+}
+
+css countButtonUpStyle() {
+	grid-area: count-button-up;
+}
+
+css countButtonDownStyle() {
+	grid-area: count-button-down;
 }
 
 templ SimpleCounter(count int, handlePostPath string) {
@@ -43,7 +55,7 @@ templ SimpleCounter(count int, handlePostPath string) {
 		</span>
 		<button
 			id="count-button-up"
-			class={ countButtonStyle() }
+			class={ countButtonStyle(), countButtonUpStyle() }
 			hx-post={ handlePostPath }
 			hx-vals='{"operation": "up"}'
 			hx-target="#count-indicator"
@@ -53,7 +65,7 @@ templ SimpleCounter(count int, handlePostPath string) {
 		</button>
 		<button
 			id="count-button-down"
-			class={ countButtonStyle() }
+			class={ countButtonStyle(), countButtonDownStyle() }
 			hx-post={ handlePostPath }
 			hx-vals='{"operation": "down"}'
 			hx-target="#count-indicator"
