@@ -1,13 +1,14 @@
 package components
 
-css iconButtonStyle() {
+css iconButtonButtonStyle() {
 	display: block;
 	width: 24px;
 	height: 24px;
 }
 
+// [TODO] ボタン押下時のアクションを追加する
 templ IconButton(icon templ.Component) {
-	<button class={ iconButtonStyle() } data-testid="icon-button-component">
+	<button class={ iconButtonButtonStyle() } data-testid="icon-button-component">
 		@icon
 	</button>
 }
