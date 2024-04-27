@@ -1,6 +1,6 @@
 package components
 
-css mainStyle() {
+css mainMainStyle() {
 	display: grid;
 	grid-auto-flow: rows;
 	gap: 16px;
@@ -9,7 +9,7 @@ css mainStyle() {
 }
 
 templ Main(count int, handlePostPath string) {
-	<main class={ mainStyle() } data-testid="main-component">
+	<main class={ mainMainStyle() } data-testid="main-component">
 		<h2>
 			index page content
 		</h2>
