@@ -13,7 +13,7 @@ func TestIconButton(t *testing.T) {
 	r, w := io.Pipe()
 
 	go func() {
-		_ = IconButton(menuIcon()).Render(context.Background(), w)
+		_ = IconButton(headerMenuIcon()).Render(context.Background(), w)
 		_ = w.Close()
 	}()
 

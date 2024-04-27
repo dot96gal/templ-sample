@@ -27,6 +27,7 @@ css headerLayoutStyle() {
 	grid-area: header;
 	background-color: { lightBlue };
 	color: { black };
+	border-bottom: solid 1px rgb(0 0 0 / 20%);
 }
 
 css sideMenuLayoutStyle() {
@@ -59,7 +60,7 @@ templ IndexPage(count int, handlePostPath string) {
 		<body>
 			<div class={ containerLayoutStyle() }>
 				<div class={ headerLayoutStyle() }>
-					@components.Header("Templ")
+					@components.Header("Templ", "/")
 				</div>
 				<div class={ sideMenuLayoutStyle() }>
 					@components.SideMenu()

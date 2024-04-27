@@ -13,7 +13,7 @@ func TestHeader(t *testing.T) {
 	r, w := io.Pipe()
 
 	go func() {
-		_ = Header("index page title").Render(context.Background(), w)
+		_ = Header("Templ", "/").Render(context.Background(), w)
 		_ = w.Close()
 	}()
 
@@ -27,7 +27,7 @@ func TestHeader(t *testing.T) {
 		t.Error("expected data-testid attribute to be rendered, but it wasn't")
 	}
 
-	expected := "index page title"
+	expected := "Templ"
 	if actual := component.Text(); !strings.Contains(actual, expected) {
 		t.Errorf("expected %q, got %q", expected, actual)
 	}

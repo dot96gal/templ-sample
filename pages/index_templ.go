@@ -45,6 +45,7 @@ func headerLayoutStyle() templ.CSSClass {
 	templ_7745c5c3_CSSBuilder.WriteString(`grid-area:header;`)
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-color`, lightBlue)))
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`color`, black)))
+	templ_7745c5c3_CSSBuilder.WriteString(`border-bottom:solid 1px rgb(0 0 0 / 20%);`)
 	templ_7745c5c3_CSSID := templ.CSSID(`headerLayoutStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
@@ -149,7 +150,7 @@ func IndexPage(count int, handlePostPath string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = components.Header("Templ").Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = components.Header("Templ", "/").Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

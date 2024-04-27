@@ -11,7 +11,7 @@ import "io"
 import "bytes"
 import "strings"
 
-func headerStyle() templ.CSSClass {
+func headerHeaderStyle() templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
 	templ_7745c5c3_CSSBuilder.WriteString(`display:grid;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`grid-template-columns:auto 1fr;`)
@@ -19,29 +19,28 @@ func headerStyle() templ.CSSClass {
 	templ_7745c5c3_CSSBuilder.WriteString(`gap:8px;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`align-items:center;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`padding:8px 16px;`)
-	templ_7745c5c3_CSSBuilder.WriteString(`border-bottom:solid 1px rgb(0 0 0 / 20%);`)
-	templ_7745c5c3_CSSID := templ.CSSID(`headerStyle`, templ_7745c5c3_CSSBuilder.String())
+	templ_7745c5c3_CSSID := templ.CSSID(`headerHeaderStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
 		Class: templ.SafeCSS(`.` + templ_7745c5c3_CSSID + `{` + templ_7745c5c3_CSSBuilder.String() + `}`),
 	}
 }
 
-func siteStyle() templ.CSSClass {
+func headerSiteStyle() templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
 	templ_7745c5c3_CSSBuilder.WriteString(`font-size:16px;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`font-weight:bold;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`padding:8px;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`color:inherit;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`text-decoration:inherit;`)
-	templ_7745c5c3_CSSID := templ.CSSID(`siteStyle`, templ_7745c5c3_CSSBuilder.String())
+	templ_7745c5c3_CSSID := templ.CSSID(`headerSiteStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
 		Class: templ.SafeCSS(`.` + templ_7745c5c3_CSSID + `{` + templ_7745c5c3_CSSBuilder.String() + `}`),
 	}
 }
 
-func menuIcon() templ.Component {
+func headerMenuIcon() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -65,7 +64,7 @@ func menuIcon() templ.Component {
 	})
 }
 
-func optionIcon() templ.Component {
+func headerOptionIcon() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -89,7 +88,7 @@ func optionIcon() templ.Component {
 	})
 }
 
-func Header(site string) templ.Component {
+func Header(siteText string, siteLink string) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -102,7 +101,7 @@ func Header(site string) templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var4 = []any{headerStyle}
+		var templ_7745c5c3_Var4 = []any{headerHeaderStyle}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var4...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -124,11 +123,11 @@ func Header(site string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = IconButton(menuIcon()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = IconButton(headerMenuIcon()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var6 = []any{siteStyle()}
+		var templ_7745c5c3_Var6 = []any{headerSiteStyle()}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var6...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -146,16 +145,25 @@ func Header(site string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" href=\"#\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var8 string
-		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(site)
+		var templ_7745c5c3_Var8 templ.SafeURL = templ.URL(siteLink)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(string(templ_7745c5c3_Var8)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/header.templ`, Line: 37, Col: 9}
+			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var9 string
+		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(siteText)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/header.templ`, Line: 36, Col: 13}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -167,7 +175,7 @@ func Header(site string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = IconButton(optionIcon()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = IconButton(headerOptionIcon()).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
