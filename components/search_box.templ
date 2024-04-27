@@ -1,0 +1,44 @@
+package components
+
+css searchStyle() {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 8px;
+	justify-content: start;
+	padding: 8px;
+}
+
+css searchInputStyle() {
+	grid-column: 1 / -1;
+	grid-row: 1;
+	max-width: 240px;
+	padding-top: 8px;
+	padding-left: 48px;
+	padding-right: 8px;
+	padding-bottom: 8px;
+	background-color: #ffffff;
+	border: none;
+}
+
+css searchButtonStyle() {
+	grid-column: 1;
+	grid-row: 1;
+	padding-left: 8px;
+}
+
+css searchIconStyle() {
+	display: block;
+	width: 24px;
+	height: 24px;
+}
+
+templ SearchBox() {
+	<form class={ searchStyle() } data-testid="search-box-component">
+		<input class={ searchInputStyle() } type="search" placeholder="Search"/>
+		<button class={ searchButtonStyle() }>
+			<svg class={ searchIconStyle() } xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+				<path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path>
+			</svg>
+		</button>
+	</form>
+}

@@ -1,0 +1,29 @@
+package components
+
+css iconLinkStyle() {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-auto-flow: column;
+	gap: 16px;
+	align-items: center;
+	width: 100%;
+	text-align: left;
+	padding: 8px 12px;
+	border-radius: 8px;
+	color: inherit;
+}
+
+css iconLinkSVGStyle() {
+	width: 24px;
+	height: 24px;
+}
+
+templ IconLink(icon templ.Component, linkText string, selectedStyleKV templ.KeyValue[templ.CSSClass, bool], hoverStyle templ.Component) {
+	@hoverStyle
+	<a class={ iconLinkStyle(), selectedStyleKV, "menu-hover" } href="#" data-testid="icon-link-component">
+		<div class={ iconLinkSVGStyle() }>
+			@icon
+		</div>
+		{ linkText }
+	</a>
+}

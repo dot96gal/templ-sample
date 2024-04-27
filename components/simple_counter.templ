@@ -10,26 +10,26 @@ css counterStyle() {
 	justify-items: center;
 	text-align: center;
 	width: fit-content;
-	padding: 20px;
+	padding: 24px;
 	border: 1px solid #ccc;
-	border-radius: 0.5rem;
-	background-color: #fff;
+	border-radius: 8px;
+	background-color: #ffffff;
 }
 
 css countIndicatorStyle() {
 	grid-area: count-indicator;
-	font-size: 3rem;
+	font-size: 48px;
 	font-weight: bold;
 }
 
 css countButtonStyle() {
 	width: 100%;
-	margin-top: 1rem;
-	padding: 0.5rem 1rem;
+	margin-top: 16px;
+	padding: 8px 16px;
 	border: 1px solid #ccc;
-	border-radius: 0.5rem;
-	background-color: #fff;
-	font-size: 1rem;
+	border-radius: 8px;
+	background-color: #ffffff;
+	font-size: 16px;
 	font-weight: bold;
 	cursor: pointer;
 }
@@ -46,6 +46,7 @@ templ SimpleCounter(count int, handlePostPath string) {
 	<div
 		id="counter"
 		class={ counterStyle() }
+		data-testid="simple-counter-component"
 	>
 		<span
 			id="count-indicator"

@@ -1,0 +1,13 @@
+package components
+
+css iconButtonStyle() {
+	display: block;
+	width: 24px;
+	height: 24px;
+}
+
+templ IconButton(icon templ.Component) {
+	<button class={ iconButtonStyle() } data-testid="icon-button-component">
+		@icon
+	</button>
+}

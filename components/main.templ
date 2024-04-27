@@ -1,0 +1,19 @@
+package components
+
+css mainStyle() {
+	display: grid;
+	grid-auto-flow: rows;
+	gap: 16px;
+	text-align: left;
+	padding: 16px;
+}
+
+templ Main(count int, handlePostPath string) {
+	<main class={ mainStyle() } data-testid="main-component">
+		<h2>
+			index page content
+		</h2>
+		@LitCounter()
+		@SimpleCounter(count, handlePostPath)
+	</main>
+}

@@ -2,6 +2,10 @@
 templ-generate:
 	templ generate
 
+.PHONY: templ-generate-watch
+templ-generate-watch:
+	templ generate --watch --proxy="http://localhost:3000" --cmd="go run ./..."
+
 .PHONY: lint
 lint:
 	golangci-lint run ./...

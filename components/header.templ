@@ -1,7 +1,42 @@
 package components
 
-templ Header(heading string) {
-	<header data-testid="header-component">
-		<h1>{ heading }</h1>
+css headerStyle() {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-auto-flow: column;
+	gap: 8px;
+	align-items: center;
+	padding: 8px 16px;
+	border-bottom: solid 1px rgb(0 0 0 / 20%);
+}
+
+css siteStyle() {
+	font-size: 16px;
+	font-weight: bold;
+	padding: 8px;
+	color: inherit;
+	text-decoration: inherit;
+}
+
+templ menuIcon() {
+	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+		<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+	</svg>
+}
+
+templ optionIcon() {
+	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+		<path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z"></path>
+	</svg>
+}
+
+templ Header(site string) {
+	<header class={ headerStyle } data-testid="header-component">
+		@IconButton(menuIcon())
+		<a class={ siteStyle() } href="#">
+			{ site }
+		</a>
+		@SearchBox()
+		@IconButton(optionIcon())
 	</header>
 }

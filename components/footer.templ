@@ -1,5 +1,11 @@
 package components
 
+css footerStyle() {
+	padding: 16px;
+	border-top: solid 1px rgb(0 0 0 / 20%);
+	font-size: 12px;
+}
+
 templ Footer(copyright string) {
-	<footer data-testid="footer-component">&copy; { copyright }</footer>
+	<footer class={ footerStyle() } data-testid="footer-component">&copy; { copyright }</footer>
 }
