@@ -11,12 +11,11 @@ import "io"
 import "bytes"
 import "strings"
 
-func footerStyle() templ.CSSClass {
+func footerFooterStyle() templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
 	templ_7745c5c3_CSSBuilder.WriteString(`padding:16px;`)
-	templ_7745c5c3_CSSBuilder.WriteString(`border-top:solid 1px rgb(0 0 0 / 20%);`)
-	templ_7745c5c3_CSSBuilder.WriteString(`font-size:12px;`)
-	templ_7745c5c3_CSSID := templ.CSSID(`footerStyle`, templ_7745c5c3_CSSBuilder.String())
+	templ_7745c5c3_CSSBuilder.WriteString(`font-size:16px;`)
+	templ_7745c5c3_CSSID := templ.CSSID(`footerFooterStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
 		Class: templ.SafeCSS(`.` + templ_7745c5c3_CSSID + `{` + templ_7745c5c3_CSSBuilder.String() + `}`),
@@ -36,7 +35,7 @@ func Footer(copyright string) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var2 = []any{footerStyle()}
+		var templ_7745c5c3_Var2 = []any{footerFooterStyle()}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -61,7 +60,7 @@ func Footer(copyright string) templ.Component {
 		var templ_7745c5c3_Var4 string
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(copyright)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/footer.templ`, Line: 10, Col: 82}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/footer.templ`, Line: 10, Col: 20}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {

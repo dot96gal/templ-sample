@@ -82,6 +82,7 @@ func footerLayoutStyle() templ.CSSClass {
 	templ_7745c5c3_CSSBuilder.WriteString(`grid-area:footer;`)
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-color`, blackBlue)))
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`color`, white)))
+	templ_7745c5c3_CSSBuilder.WriteString(`border-top:solid 1px rgb(0 0 0 / 20%);`)
 	templ_7745c5c3_CSSID := templ.CSSID(`footerLayoutStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
