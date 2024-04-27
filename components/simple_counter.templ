@@ -2,7 +2,7 @@ package components
 
 import "strconv"
 
-css counterStyle() {
+css simpleCounterCounterStyle() {
 	display: grid;
 	grid-template-areas: "count-indicator"
 		"count-button-up"
@@ -16,13 +16,13 @@ css counterStyle() {
 	background-color: #ffffff;
 }
 
-css countIndicatorStyle() {
+css simpleCounterCountIndicatorStyle() {
 	grid-area: count-indicator;
 	font-size: 48px;
 	font-weight: bold;
 }
 
-css countButtonStyle() {
+css simpleCounterCountButtonStyle() {
 	width: 100%;
 	margin-top: 16px;
 	padding: 8px 16px;
@@ -34,29 +34,27 @@ css countButtonStyle() {
 	cursor: pointer;
 }
 
-css countButtonUpStyle() {
+css simpleCounterCountButtonUpStyle() {
 	grid-area: count-button-up;
 }
 
-css countButtonDownStyle() {
+css simpleCounterCountButtonDownStyle() {
 	grid-area: count-button-down;
 }
 
 templ SimpleCounter(count int, handlePostPath string) {
 	<div
-		id="counter"
-		class={ counterStyle() }
+		class={ simpleCounterCounterStyle() }
 		data-testid="simple-counter-component"
 	>
 		<span
 			id="count-indicator"
-			class={ countIndicatorStyle() }
+			class={ simpleCounterCountIndicatorStyle() }
 		>
 			{ strconv.Itoa(count) }
 		</span>
 		<button
-			id="count-button-up"
-			class={ countButtonStyle(), countButtonUpStyle() }
+			class={ simpleCounterCountButtonStyle(), simpleCounterCountButtonUpStyle() }
 			hx-post={ handlePostPath }
 			hx-vals='{"operation": "up"}'
 			hx-target="#count-indicator"
@@ -65,8 +63,7 @@ templ SimpleCounter(count int, handlePostPath string) {
 			Count Up
 		</button>
 		<button
-			id="count-button-down"
-			class={ countButtonStyle(), countButtonDownStyle() }
+			class={ simpleCounterCountButtonStyle(), simpleCounterCountButtonDownStyle() }
 			hx-post={ handlePostPath }
 			hx-vals='{"operation": "down"}'
 			hx-target="#count-indicator"
