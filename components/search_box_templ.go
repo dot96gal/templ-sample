@@ -11,21 +11,21 @@ import "io"
 import "bytes"
 import "strings"
 
-func searchStyle() templ.CSSClass {
+func searchBoxFormStyle() templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
 	templ_7745c5c3_CSSBuilder.WriteString(`display:grid;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`grid-template-columns:auto 1fr;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`gap:8px;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`justify-content:start;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`padding:8px;`)
-	templ_7745c5c3_CSSID := templ.CSSID(`searchStyle`, templ_7745c5c3_CSSBuilder.String())
+	templ_7745c5c3_CSSID := templ.CSSID(`searchBoxFormStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
 		Class: templ.SafeCSS(`.` + templ_7745c5c3_CSSID + `{` + templ_7745c5c3_CSSBuilder.String() + `}`),
 	}
 }
 
-func searchInputStyle() templ.CSSClass {
+func searchBoxInputStyle() templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
 	templ_7745c5c3_CSSBuilder.WriteString(`grid-column:1 / -1;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`grid-row:1;`)
@@ -36,37 +36,38 @@ func searchInputStyle() templ.CSSClass {
 	templ_7745c5c3_CSSBuilder.WriteString(`padding-bottom:8px;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`background-color:#ffffff;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`border:none;`)
-	templ_7745c5c3_CSSID := templ.CSSID(`searchInputStyle`, templ_7745c5c3_CSSBuilder.String())
+	templ_7745c5c3_CSSID := templ.CSSID(`searchBoxInputStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
 		Class: templ.SafeCSS(`.` + templ_7745c5c3_CSSID + `{` + templ_7745c5c3_CSSBuilder.String() + `}`),
 	}
 }
 
-func searchButtonStyle() templ.CSSClass {
+func searchBoxButtonStyle() templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
 	templ_7745c5c3_CSSBuilder.WriteString(`grid-column:1;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`grid-row:1;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`padding-left:8px;`)
-	templ_7745c5c3_CSSID := templ.CSSID(`searchButtonStyle`, templ_7745c5c3_CSSBuilder.String())
+	templ_7745c5c3_CSSID := templ.CSSID(`searchBoxButtonStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
 		Class: templ.SafeCSS(`.` + templ_7745c5c3_CSSID + `{` + templ_7745c5c3_CSSBuilder.String() + `}`),
 	}
 }
 
-func searchIconStyle() templ.CSSClass {
+func searchBoxIconStyle() templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
 	templ_7745c5c3_CSSBuilder.WriteString(`display:block;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`width:24px;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`height:24px;`)
-	templ_7745c5c3_CSSID := templ.CSSID(`searchIconStyle`, templ_7745c5c3_CSSBuilder.String())
+	templ_7745c5c3_CSSID := templ.CSSID(`searchBoxIconStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
 		Class: templ.SafeCSS(`.` + templ_7745c5c3_CSSID + `{` + templ_7745c5c3_CSSBuilder.String() + `}`),
 	}
 }
 
+// [TODO] ボタン押下時のアクションを追加する
 func SearchBox() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
@@ -80,7 +81,7 @@ func SearchBox() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var2 = []any{searchStyle()}
+		var templ_7745c5c3_Var2 = []any{searchBoxFormStyle()}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -102,7 +103,7 @@ func SearchBox() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var4 = []any{searchInputStyle()}
+		var templ_7745c5c3_Var4 = []any{searchBoxInputStyle()}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var4...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -124,7 +125,7 @@ func SearchBox() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var6 = []any{searchButtonStyle()}
+		var templ_7745c5c3_Var6 = []any{searchBoxButtonStyle()}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var6...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -146,7 +147,7 @@ func SearchBox() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var8 = []any{searchIconStyle()}
+		var templ_7745c5c3_Var8 = []any{searchBoxIconStyle()}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var8...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
