@@ -13,7 +13,7 @@ var (
 	white      = "#ffffff"
 )
 
-css containerLayoutStyle() {
+css indexPageContainerStyle() {
 	display: grid;
 	grid-template-areas: "header header"
 		"side-menu main"
@@ -23,26 +23,26 @@ css containerLayoutStyle() {
 	height: 100svh;
 }
 
-css headerLayoutStyle() {
+css indexPageHeaderStyle() {
 	grid-area: header;
 	background-color: { lightBlue };
 	color: { black };
 	border-bottom: solid 1px rgb(0 0 0 / 20%);
 }
 
-css sideMenuLayoutStyle() {
+css indexPageSideMenuStyle() {
 	grid-area: side-menu;
 	background-color: { darkBlue };
 	color: { white };
 }
 
-css mainLayoutStyle() {
+css indexPageMainStyle() {
 	grid-area: main;
 	background-color: { whiteSmoke };
 	color: { black };
 }
 
-css footerLayoutStyle() {
+css indexPageFooterStyle() {
 	grid-area: footer;
 	background-color: { blackBlue };
 	color: { white };
@@ -59,17 +59,17 @@ templ IndexPage(count int, handlePostPath string) {
 			<link rel="stylesheet" href="/assets/css/reset.min.css"/>
 		</head>
 		<body>
-			<div class={ containerLayoutStyle() }>
-				<div class={ headerLayoutStyle() }>
+			<div class={ indexPageContainerStyle() }>
+				<div class={ indexPageHeaderStyle() }>
 					@components.Header("Templ", "/")
 				</div>
-				<div class={ sideMenuLayoutStyle() }>
+				<div class={ indexPageSideMenuStyle() }>
 					@components.SideMenu()
 				</div>
-				<div class={ mainLayoutStyle() }>
+				<div class={ indexPageMainStyle() }>
 					@components.Main(count, handlePostPath)
 				</div>
-				<div class={ footerLayoutStyle() }>
+				<div class={ indexPageFooterStyle() }>
 					@components.Footer("2024 dot96gal All Rights Reserved.")
 				</div>
 			</div>

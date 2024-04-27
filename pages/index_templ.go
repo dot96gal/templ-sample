@@ -24,7 +24,7 @@ var (
 	white      = "#ffffff"
 )
 
-func containerLayoutStyle() templ.CSSClass {
+func indexPageContainerStyle() templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
 	templ_7745c5c3_CSSBuilder.WriteString(`display:grid;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`grid-template-areas:"header header"
@@ -33,57 +33,57 @@ func containerLayoutStyle() templ.CSSClass {
 	templ_7745c5c3_CSSBuilder.WriteString(`grid-template-columns:240px auto;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`grid-template-rows:auto 1fr auto;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`height:100svh;`)
-	templ_7745c5c3_CSSID := templ.CSSID(`containerLayoutStyle`, templ_7745c5c3_CSSBuilder.String())
+	templ_7745c5c3_CSSID := templ.CSSID(`indexPageContainerStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
 		Class: templ.SafeCSS(`.` + templ_7745c5c3_CSSID + `{` + templ_7745c5c3_CSSBuilder.String() + `}`),
 	}
 }
 
-func headerLayoutStyle() templ.CSSClass {
+func indexPageHeaderStyle() templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
 	templ_7745c5c3_CSSBuilder.WriteString(`grid-area:header;`)
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-color`, lightBlue)))
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`color`, black)))
 	templ_7745c5c3_CSSBuilder.WriteString(`border-bottom:solid 1px rgb(0 0 0 / 20%);`)
-	templ_7745c5c3_CSSID := templ.CSSID(`headerLayoutStyle`, templ_7745c5c3_CSSBuilder.String())
+	templ_7745c5c3_CSSID := templ.CSSID(`indexPageHeaderStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
 		Class: templ.SafeCSS(`.` + templ_7745c5c3_CSSID + `{` + templ_7745c5c3_CSSBuilder.String() + `}`),
 	}
 }
 
-func sideMenuLayoutStyle() templ.CSSClass {
+func indexPageSideMenuStyle() templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
 	templ_7745c5c3_CSSBuilder.WriteString(`grid-area:side-menu;`)
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-color`, darkBlue)))
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`color`, white)))
-	templ_7745c5c3_CSSID := templ.CSSID(`sideMenuLayoutStyle`, templ_7745c5c3_CSSBuilder.String())
+	templ_7745c5c3_CSSID := templ.CSSID(`indexPageSideMenuStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
 		Class: templ.SafeCSS(`.` + templ_7745c5c3_CSSID + `{` + templ_7745c5c3_CSSBuilder.String() + `}`),
 	}
 }
 
-func mainLayoutStyle() templ.CSSClass {
+func indexPageMainStyle() templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
 	templ_7745c5c3_CSSBuilder.WriteString(`grid-area:main;`)
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-color`, whiteSmoke)))
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`color`, black)))
-	templ_7745c5c3_CSSID := templ.CSSID(`mainLayoutStyle`, templ_7745c5c3_CSSBuilder.String())
+	templ_7745c5c3_CSSID := templ.CSSID(`indexPageMainStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
 		Class: templ.SafeCSS(`.` + templ_7745c5c3_CSSID + `{` + templ_7745c5c3_CSSBuilder.String() + `}`),
 	}
 }
 
-func footerLayoutStyle() templ.CSSClass {
+func indexPageFooterStyle() templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
 	templ_7745c5c3_CSSBuilder.WriteString(`grid-area:footer;`)
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-color`, blackBlue)))
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`color`, white)))
 	templ_7745c5c3_CSSBuilder.WriteString(`border-top:solid 1px rgb(0 0 0 / 20%);`)
-	templ_7745c5c3_CSSID := templ.CSSID(`footerLayoutStyle`, templ_7745c5c3_CSSBuilder.String())
+	templ_7745c5c3_CSSID := templ.CSSID(`indexPageFooterStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
 		Class: templ.SafeCSS(`.` + templ_7745c5c3_CSSID + `{` + templ_7745c5c3_CSSBuilder.String() + `}`),
@@ -107,7 +107,7 @@ func IndexPage(count int, handlePostPath string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var2 = []any{containerLayoutStyle()}
+		var templ_7745c5c3_Var2 = []any{indexPageContainerStyle()}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -129,7 +129,7 @@ func IndexPage(count int, handlePostPath string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var4 = []any{headerLayoutStyle()}
+		var templ_7745c5c3_Var4 = []any{indexPageHeaderStyle()}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var4...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -159,7 +159,7 @@ func IndexPage(count int, handlePostPath string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var6 = []any{sideMenuLayoutStyle()}
+		var templ_7745c5c3_Var6 = []any{indexPageSideMenuStyle()}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var6...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -189,7 +189,7 @@ func IndexPage(count int, handlePostPath string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var8 = []any{mainLayoutStyle()}
+		var templ_7745c5c3_Var8 = []any{indexPageMainStyle()}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var8...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -219,7 +219,7 @@ func IndexPage(count int, handlePostPath string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var10 = []any{footerLayoutStyle()}
+		var templ_7745c5c3_Var10 = []any{indexPageFooterStyle()}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var10...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
