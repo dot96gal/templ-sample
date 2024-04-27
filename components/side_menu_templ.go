@@ -48,7 +48,9 @@ func selectedMenuStyle() templ.CSSClass {
 }
 
 // [TODO] :hover疑似要素に対応したらリファクタリングする
-func hoverMenuStyle() templ.Component {
+const hoverMenuStyleClass = "menu-hover"
+
+func hoverMenuStyle(target string) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -201,7 +203,7 @@ func SideMenu() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = IconLink(homeIcon(), "home", templ.KV(selectedMenuStyle(), true), hoverMenuStyle()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = IconLink(homeIcon(), "home", "/", templ.KV(selectedMenuStyle(), true), hoverMenuStyleClass, hoverMenuStyle(hoverMenuStyleClass)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -209,7 +211,7 @@ func SideMenu() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = IconLink(chartIcon(), "chart", templ.KV(selectedMenuStyle(), false), hoverMenuStyle()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = IconLink(chartIcon(), "chart", "/", templ.KV(selectedMenuStyle(), false), hoverMenuStyleClass, hoverMenuStyle(hoverMenuStyleClass)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -217,7 +219,7 @@ func SideMenu() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = IconLink(trendIcon(), "trend", templ.KV(selectedMenuStyle(), false), hoverMenuStyle()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = IconLink(trendIcon(), "trend", "/", templ.KV(selectedMenuStyle(), false), hoverMenuStyleClass, hoverMenuStyle(hoverMenuStyleClass)).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

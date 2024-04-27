@@ -1,6 +1,6 @@
 package components
 
-css iconLinkStyle() {
+css iconLinkLinkStyle() {
 	display: grid;
 	grid-template-columns: auto 1fr;
 	grid-auto-flow: column;
@@ -13,17 +13,22 @@ css iconLinkStyle() {
 	color: inherit;
 }
 
-css iconLinkSVGStyle() {
+css iconLinkIconStyle() {
 	width: 24px;
 	height: 24px;
 }
 
-templ IconLink(icon templ.Component, linkText string, selectedStyleKV templ.KeyValue[templ.CSSClass, bool], hoverStyle templ.Component) {
+// [TODO] :hover疑似要素に対応したらリファクタリングする
+templ IconLink(icon templ.Component, targetText string, targetLink string, selectedStyleKV templ.KeyValue[templ.CSSClass, bool], hoverStyleClass string, hoverStyle templ.Component) {
 	@hoverStyle
-	<a class={ iconLinkStyle(), selectedStyleKV, "menu-hover" } href="#" data-testid="icon-link-component">
-		<div class={ iconLinkSVGStyle() }>
+	<a 
+		class={ iconLinkLinkStyle(), selectedStyleKV, hoverStyleClass }
+		href={ templ.URL(targetLink) }
+		data-testid="icon-link-component"
+	>
+		<div class={ iconLinkIconStyle() }>
 			@icon
 		</div>
-		{ linkText }
+		{ targetText }
 	</a>
 }

@@ -14,7 +14,7 @@ func TestIconLink(t *testing.T) {
 	r, w := io.Pipe()
 
 	go func() {
-		_ = IconLink(homeIcon(), "home", templ.KV(selectedMenuStyle(), true), hoverMenuStyle()).Render(context.Background(), w)
+		_ = IconLink(homeIcon(), "home", "/", templ.KV(selectedMenuStyle(), true), "menu-hover", hoverMenuStyle("menu-hover")).Render(context.Background(), w)
 		_ = w.Close()
 	}()
 

@@ -19,7 +19,8 @@ css selectedMenuStyle() {
 }
 
 // [TODO] :hover疑似要素に対応したらリファクタリングする
-templ hoverMenuStyle() {
+const hoverMenuStyleClass = "menu-hover"
+templ hoverMenuStyle(target string) {
 	<style>
     .menu-hover:hover {
 	    background-color: rgb(94, 102, 115)
@@ -49,13 +50,13 @@ templ SideMenu() {
 	<menu class={ sideMenuStyle() } data-testid="side-menu-component">
 		<ul class={ menuVerticalStyle() }>
 			<li>
-				@IconLink(homeIcon(), "home", templ.KV(selectedMenuStyle(), true), hoverMenuStyle())
+				@IconLink(homeIcon(), "home", "/", templ.KV(selectedMenuStyle(), true), hoverMenuStyleClass, hoverMenuStyle(hoverMenuStyleClass))
 			</li>
 			<li>
-				@IconLink(chartIcon(), "chart", templ.KV(selectedMenuStyle(), false), hoverMenuStyle())
+				@IconLink(chartIcon(), "chart", "/", templ.KV(selectedMenuStyle(), false), hoverMenuStyleClass, hoverMenuStyle(hoverMenuStyleClass))
 			</li>
 			<li>
-				@IconLink(trendIcon(), "trend", templ.KV(selectedMenuStyle(), false), hoverMenuStyle())
+				@IconLink(trendIcon(), "trend", "/", templ.KV(selectedMenuStyle(), false), hoverMenuStyleClass, hoverMenuStyle(hoverMenuStyleClass))
 			</li>
 		</ul>
 	</menu>
