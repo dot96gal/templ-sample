@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
 
+	"github.com/dot96gal/templ-sample/components"
 	"github.com/dot96gal/templ-sample/pages"
 	"github.com/dot96gal/templ-sample/storage"
 )
@@ -34,14 +34,17 @@ func (h *IndexHandler) Post(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 
-	operation := r.PostForm.Get("operation")
-
-	switch operation {
-	case "up":
+	req := components.ParseSimpleCounterRequest(r.PostForm)
+	switch req.Operation {
+	case components.SIMPLE_COUNTER_OPERATION_UP:
 		h.state.CountUp()
-	case "down":
+	case components.SIMPLE_COUNTER_OPERATION_DOWN:
 		h.state.CountDown()
 	}
 
-	fmt.Fprintf(w, "%d", h.state.Count())
+	component := components.SimpleCounterIndicator(h.state.Count())
+	err = component.Render(r.Context(), w)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
 }

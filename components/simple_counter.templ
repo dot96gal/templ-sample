@@ -1,6 +1,45 @@
 package components
 
-import "strconv"
+import (
+	"encoding/json"
+	"fmt"
+	"log"
+	"strconv"
+	"net/url"
+)
+
+type SimpleCounterOperation string
+
+const (
+	SIMPLE_COUNTER_OPERATION_KEY  string                 = "operation"
+	SIMPLE_COUNTER_OPERATION_UP   SimpleCounterOperation = "up"
+	SIMPLE_COUNTER_OPERATION_DOWN SimpleCounterOperation = "down"
+)
+
+type SimpleCounterRequest struct {
+	Operation SimpleCounterOperation `json:"operation"`
+}
+
+func ParseSimpleCounterRequest(values url.Values) SimpleCounterRequest {
+	return SimpleCounterRequest{
+		Operation: SimpleCounterOperation(
+			values.Get(SIMPLE_COUNTER_OPERATION_KEY),
+		),
+	}
+}
+
+func newSimpleCounterRequestJSON(operation SimpleCounterOperation) string {
+	r := SimpleCounterRequest{
+		Operation: operation,
+	}
+
+	b, err := json.Marshal(r)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return string(b)
+}
 
 css simpleCounterCounterStyle() {
 	display: grid;
@@ -42,22 +81,25 @@ css simpleCounterCountButtonDownStyle() {
 	grid-area: count-button-down;
 }
 
+templ SimpleCounterIndicator(count int) {
+	{ strconv.Itoa(count) }
+}
+
 templ SimpleCounter(count int, handlePostPath string) {
 	<div
 		class={ simpleCounterCounterStyle() }
 		data-testid="simple-counter-component"
 	>
 		<span
-			id="count-indicator"
 			class={ simpleCounterCountIndicatorStyle() }
 		>
-			{ strconv.Itoa(count) }
+			@SimpleCounterIndicator(count)
 		</span>
 		<button
 			class={ simpleCounterCountButtonStyle(), simpleCounterCountButtonUpStyle() }
 			hx-post={ handlePostPath }
-			hx-vals='{"operation": "up"}'
-			hx-target="#count-indicator"
+			hx-vals={ newSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_UP) }
+			hx-target={ fmt.Sprintf("previous .%s", simpleCounterCountIndicatorStyle().ClassName()) }
 			hx-swap="innerHTML"
 		>
 			Count Up
@@ -65,8 +107,8 @@ templ SimpleCounter(count int, handlePostPath string) {
 		<button
 			class={ simpleCounterCountButtonStyle(), simpleCounterCountButtonDownStyle() }
 			hx-post={ handlePostPath }
-			hx-vals='{"operation": "down"}'
-			hx-target="#count-indicator"
+			hx-vals={ newSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_DOWN) }
+			hx-target={ fmt.Sprintf("previous .%s", simpleCounterCountIndicatorStyle().ClassName()) }
 			hx-swap="innerHTML"
 		>
 			Count Down
