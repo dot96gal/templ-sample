@@ -18,7 +18,7 @@ func TestIconLink(t *testing.T) {
 
 	go func() {
 		props := IconLinkProps{
-			Icon:            IconHome(),
+			Icon:            IconHome(IconProps{Width: 24, Height: 24}),
 			Text:            "home",
 			Link:            "/",
 			SelectedStyle:   templ.KV(sideMenuItemSelectedStyle(), true),

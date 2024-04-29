@@ -91,7 +91,9 @@ func Header(props HeaderProps) templ.Component {
 		}
 		templ_7745c5c3_Err = IconButton(
 			IconButtonProps{
-				Icon: IconMenu(),
+				Icon: IconMenu(
+					IconProps{Width: 24, Height: 24},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -131,7 +133,7 @@ func Header(props HeaderProps) templ.Component {
 		var templ_7745c5c3_Var7 string
 		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(props.SiteText)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/header.templ`, Line: 40, Col: 19}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/header.templ`, Line: 42, Col: 19}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {
@@ -149,7 +151,9 @@ func Header(props HeaderProps) templ.Component {
 		}
 		templ_7745c5c3_Err = IconButton(
 			IconButtonProps{
-				Icon: IconOption(),
+				Icon: IconOption(
+					IconProps{Width: 24, Height: 24},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {

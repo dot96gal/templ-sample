@@ -44,7 +44,9 @@ templ SearchBox(props SearchBoxProps) {
 		<button
 			class={ searchBoxButtonStyle() }
 		>
-			@IconSearch()
+			@IconSearch(
+				IconProps{Width: 24, Height: 24},
+			)
 		</button>
 	</form>
 }

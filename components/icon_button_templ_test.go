@@ -18,7 +18,7 @@ func TestIconButton(t *testing.T) {
 
 	go func() {
 		props := IconButtonProps{
-			Icon:       IconMenu(),
+			Icon:       IconMenu(IconProps{Width: 24, Height: 24}),
 			Attributes: templ.Attributes{"data-testid": dataTestid},
 		}
 		_ = IconButton(props).Render(context.Background(), w)

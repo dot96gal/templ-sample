@@ -11,11 +11,15 @@ import "io"
 import "bytes"
 import "strings"
 
-func iconSvgStyle() templ.CSSClass {
+import (
+	"fmt"
+)
+
+func iconSvgStyle(width uint, height uint) templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
 	templ_7745c5c3_CSSBuilder.WriteString(`display:block;`)
-	templ_7745c5c3_CSSBuilder.WriteString(`width:24px;`)
-	templ_7745c5c3_CSSBuilder.WriteString(`height:24px;`)
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`width`, fmt.Sprintf("%dpx", width))))
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`height`, fmt.Sprintf("%dpx", height))))
 	templ_7745c5c3_CSSID := templ.CSSID(`iconSvgStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
@@ -23,7 +27,12 @@ func iconSvgStyle() templ.CSSClass {
 	}
 }
 
-func IconMenu() templ.Component {
+type IconProps struct {
+	Width  uint
+	Height uint
+}
+
+func IconMenu(props IconProps) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -36,7 +45,7 @@ func IconMenu() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var2 = []any{iconSvgStyle()}
+		var templ_7745c5c3_Var2 = []any{iconSvgStyle(props.Width, props.Height)}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -65,7 +74,7 @@ func IconMenu() templ.Component {
 	})
 }
 
-func IconOption() templ.Component {
+func IconOption(props IconProps) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -78,7 +87,7 @@ func IconOption() templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var5 = []any{iconSvgStyle()}
+		var templ_7745c5c3_Var5 = []any{iconSvgStyle(props.Width, props.Height)}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var5...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -107,7 +116,7 @@ func IconOption() templ.Component {
 	})
 }
 
-func IconHome() templ.Component {
+func IconHome(props IconProps) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -120,7 +129,7 @@ func IconHome() templ.Component {
 			templ_7745c5c3_Var7 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var8 = []any{iconSvgStyle()}
+		var templ_7745c5c3_Var8 = []any{iconSvgStyle(props.Width, props.Height)}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var8...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -149,7 +158,7 @@ func IconHome() templ.Component {
 	})
 }
 
-func IconChart() templ.Component {
+func IconChart(props IconProps) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -162,7 +171,7 @@ func IconChart() templ.Component {
 			templ_7745c5c3_Var10 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var11 = []any{iconSvgStyle()}
+		var templ_7745c5c3_Var11 = []any{iconSvgStyle(props.Width, props.Height)}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var11...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -191,7 +200,7 @@ func IconChart() templ.Component {
 	})
 }
 
-func IconTrend() templ.Component {
+func IconTrend(props IconProps) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -204,7 +213,7 @@ func IconTrend() templ.Component {
 			templ_7745c5c3_Var13 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var14 = []any{iconSvgStyle()}
+		var templ_7745c5c3_Var14 = []any{iconSvgStyle(props.Width, props.Height)}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var14...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -233,7 +242,7 @@ func IconTrend() templ.Component {
 	})
 }
 
-func IconSearch() templ.Component {
+func IconSearch(props IconProps) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -246,7 +255,7 @@ func IconSearch() templ.Component {
 			templ_7745c5c3_Var16 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var17 = []any{iconSvgStyle()}
+		var templ_7745c5c3_Var17 = []any{iconSvgStyle(props.Width, props.Height)}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var17...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

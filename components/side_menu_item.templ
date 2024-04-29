@@ -48,7 +48,7 @@ type SideMenuItemHomeProps struct {
 templ SideMenuItemHome(props SideMenuItemHomeProps) {
 	@SideMenuItem(
 		SideMenuItemProps{
-			Icon:       IconHome(),
+			Icon:       IconHome(IconProps{Width: 24, Height: 24}),
 			Text:       "home",
 			Link:       props.Link,
 			IsSelected: props.IsSelected,
@@ -66,7 +66,7 @@ type SideMenuItemChartProps struct {
 templ SideMenuItemChart(props SideMenuItemChartProps) {
 	@SideMenuItem(
 		SideMenuItemProps{
-			Icon:       IconChart(),
+			Icon:       IconChart(IconProps{Width: 24, Height: 24}),
 			Text:       "chart",
 			Link:       props.Link,
 			IsSelected: props.IsSelected,
@@ -84,7 +84,7 @@ type SideMenuItemTrendProps struct {
 templ SideMenuItemTrend(props SideMenuItemTrendProps) {
 	@SideMenuItem(
 		SideMenuItemProps{
-			Icon:       IconTrend(),
+			Icon:       IconTrend(IconProps{Width: 24, Height: 24}),
 			Text:       "trend",
 			Link:       props.Link,
 			IsSelected: props.IsSelected,

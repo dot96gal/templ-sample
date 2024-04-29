@@ -30,7 +30,9 @@ templ Header(props HeaderProps) {
 	>
 		@IconButton(
 			IconButtonProps{
-				Icon: IconMenu(),
+				Icon: IconMenu(
+					IconProps{Width: 24, Height: 24},
+				),
 			},
 		)
 		<a
@@ -44,7 +46,9 @@ templ Header(props HeaderProps) {
 		)
 		@IconButton(
 			IconButtonProps{
-				Icon: IconOption(),
+				Icon: IconOption(
+					IconProps{Width: 24, Height: 24},
+				),
 			},
 		)
 	</header>

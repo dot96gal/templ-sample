@@ -113,7 +113,7 @@ func SideMenuItemHome(props SideMenuItemHomeProps) templ.Component {
 		ctx = templ.ClearChildren(ctx)
 		templ_7745c5c3_Err = SideMenuItem(
 			SideMenuItemProps{
-				Icon:       IconHome(),
+				Icon:       IconHome(IconProps{Width: 24, Height: 24}),
 				Text:       "home",
 				Link:       props.Link,
 				IsSelected: props.IsSelected,
@@ -151,7 +151,7 @@ func SideMenuItemChart(props SideMenuItemChartProps) templ.Component {
 		ctx = templ.ClearChildren(ctx)
 		templ_7745c5c3_Err = SideMenuItem(
 			SideMenuItemProps{
-				Icon:       IconChart(),
+				Icon:       IconChart(IconProps{Width: 24, Height: 24}),
 				Text:       "chart",
 				Link:       props.Link,
 				IsSelected: props.IsSelected,
@@ -189,7 +189,7 @@ func SideMenuItemTrend(props SideMenuItemTrendProps) templ.Component {
 		ctx = templ.ClearChildren(ctx)
 		templ_7745c5c3_Err = SideMenuItem(
 			SideMenuItemProps{
-				Icon:       IconTrend(),
+				Icon:       IconTrend(IconProps{Width: 24, Height: 24}),
 				Text:       "trend",
 				Link:       props.Link,
 				IsSelected: props.IsSelected,
