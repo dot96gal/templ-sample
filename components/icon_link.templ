@@ -19,21 +19,22 @@ css iconLinkIconStyle() {
 }
 
 type IconLinkProps struct {
-	Icon templ.Component
-	Text string
-	Link string
-	CSSClass []templ.KeyValue[templ.CSSClass, bool]
+	Icon            templ.Component
+	Text            string
+	Link            string
+	SelectedStyle   templ.KeyValue[templ.CSSClass, bool]
 	HoverStyleClass string
-	HoverStyle templ.Component
+	HoverStyle      templ.Component
+	Attributes      templ.Attributes
 }
 
 // [TODO] :hover疑似要素に対応したらリファクタリングする
 templ IconLink(props IconLinkProps) {
 	@props.HoverStyle
-	<a 
-		class={ iconLinkLinkStyle(), props.CSSClass, props.HoverStyleClass }
+	<a
+		class={ iconLinkLinkStyle(), props.SelectedStyle, props.HoverStyleClass }
 		href={ templ.URL(props.Link) }
-		data-testid="icon-link-component"
+		{ props.Attributes... }
 	>
 		<div class={ iconLinkIconStyle() }>
 			@props.Icon

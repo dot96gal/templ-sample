@@ -15,11 +15,15 @@ css sideMenuULStyle() {
 }
 
 type SideMenuProps struct {
-	Items []templ.Component
+	Items      []templ.Component
+	Attributes templ.Attributes
 }
 
 templ SideMenu(props SideMenuProps) {
-	<menu class={ sideMenuMenuStyle() } data-testid="side-menu-component">
+	<menu
+		class={ sideMenuMenuStyle() }
+		{ props.Attributes... }
+	>
 		<ul class={ sideMenuULStyle() }>
 			for _, item := range props.Items {
 				<li>

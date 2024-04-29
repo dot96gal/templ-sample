@@ -50,8 +50,9 @@ css indexPageFooterStyle() {
 }
 
 type IndexPageProps struct {
-	Count int
+	Count          int
 	HandlePostPath string
+	Attributes     templ.Attributes
 }
 
 templ IndexPage(props IndexPageProps) {
@@ -70,6 +71,9 @@ templ IndexPage(props IndexPageProps) {
 						components.HeaderProps{
 							SiteText: "Templ",
 							SiteLink: "/",
+							Attributes: templ.Attributes{
+								"data-testid": props.Attributes["data-testid-header"],
+							},
 						},
 					)
 				</div>
@@ -79,22 +83,25 @@ templ IndexPage(props IndexPageProps) {
 							Items: []templ.Component{
 								components.SideMenuItemHome(
 									components.SideMenuItemHomeProps{
-										Link: "/",
+										Link:       "/",
 										IsSelected: true,
 									},
 								),
 								components.SideMenuItemChart(
 									components.SideMenuItemChartProps{
-										Link: "/",
+										Link:       "/",
 										IsSelected: false,
 									},
 								),
 								components.SideMenuItemTrend(
 									components.SideMenuItemTrendProps{
-										Link: "/",
+										Link:       "/",
 										IsSelected: false,
 									},
 								),
+							},
+							Attributes: templ.Attributes{
+								"data-testid": props.Attributes["data-testid-side-menu"],
 							},
 						},
 					)
@@ -102,8 +109,11 @@ templ IndexPage(props IndexPageProps) {
 				<div class={ indexPageMainStyle() }>
 					@components.Main(
 						components.MainProps{
-							Count: props.Count,
+							Count:          props.Count,
 							HandlePostPath: props.HandlePostPath,
+							Attributes: templ.Attributes{
+								"data-testid": props.Attributes["data-testid-main"],
+							},
 						},
 					)
 				</div>
@@ -111,6 +121,9 @@ templ IndexPage(props IndexPageProps) {
 					@components.Footer(
 						components.FooterProps{
 							Copyright: "2024 dot96gal All Rights Reserved.",
+							Attributes: templ.Attributes{
+								"data-testid": props.Attributes["data-testid-footer"],
+							},
 						},
 					)
 				</div>

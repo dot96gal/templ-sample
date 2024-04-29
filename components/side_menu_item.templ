@@ -8,81 +8,87 @@ css sideMenuItemSelectedStyle() {
 const sideMenuItemHoverStyleClass = "menu-hover"
 
 templ sideMenuItemHoverStyle(target string) {
-	<style>
+	if target == sideMenuItemHoverStyleClass {
+		<style>
     .menu-hover:hover {
 	    background-color: rgb(94, 102, 115)
     }
   </style>
+	}
 }
 
 type SideMenuItemProps struct {
-	Icon templ.Component
-	Text string
-	Link string
+	Icon       templ.Component
+	Text       string
+	Link       string
 	IsSelected bool
+	Attributes templ.Attributes
 }
 
 templ SideMenuItem(props SideMenuItemProps) {
 	@IconLink(
 		IconLinkProps{
-			Icon: props.Icon,
-			Text: props.Text,
-			Link: props.Link,
-			CSSClass: []templ.KeyValue[templ.CSSClass, bool]{
-				templ.KV(sideMenuItemSelectedStyle(), props.IsSelected),
-			},
+			Icon:            props.Icon,
+			Text:            props.Text,
+			Link:            props.Link,
+			SelectedStyle:   templ.KV(sideMenuItemSelectedStyle(), props.IsSelected),
 			HoverStyleClass: sideMenuItemHoverStyleClass,
-			HoverStyle: sideMenuItemHoverStyle(sideMenuItemHoverStyleClass),
-		},	
+			HoverStyle:      sideMenuItemHoverStyle(sideMenuItemHoverStyleClass),
+			Attributes:      templ.Attributes{"data-testid": props.Attributes["data-testid"]},
+		},
 	)
 }
 
 type SideMenuItemHomeProps struct {
-	Link string
+	Link       string
 	IsSelected bool
+	Attributes templ.Attributes
 }
 
 templ SideMenuItemHome(props SideMenuItemHomeProps) {
 	@SideMenuItem(
-		SideMenuItemProps {
-			Icon: IconHome(),
-			Text: "home",
-			Link: props.Link,
+		SideMenuItemProps{
+			Icon:       IconHome(),
+			Text:       "home",
+			Link:       props.Link,
 			IsSelected: props.IsSelected,
+			Attributes: templ.Attributes{"data-testid": props.Attributes["data-testid"]},
 		},
 	)
-
 }
 
 type SideMenuItemChartProps struct {
-	Link string
+	Link       string
 	IsSelected bool
+	Attributes templ.Attributes
 }
 
 templ SideMenuItemChart(props SideMenuItemChartProps) {
 	@SideMenuItem(
-		SideMenuItemProps {
-			Icon: IconChart(),
-			Text: "chart",
-			Link: props.Link,
+		SideMenuItemProps{
+			Icon:       IconChart(),
+			Text:       "chart",
+			Link:       props.Link,
 			IsSelected: props.IsSelected,
+			Attributes: templ.Attributes{"data-testid": props.Attributes["data-testid"]},
 		},
 	)
 }
 
 type SideMenuItemTrendProps struct {
-	Link string
+	Link       string
 	IsSelected bool
+	Attributes templ.Attributes
 }
-
 
 templ SideMenuItemTrend(props SideMenuItemTrendProps) {
 	@SideMenuItem(
-		SideMenuItemProps {
-			Icon: IconTrend(),
-			Text: "trend",
-			Link: props.Link,
+		SideMenuItemProps{
+			Icon:       IconTrend(),
+			Text:       "trend",
+			Link:       props.Link,
 			IsSelected: props.IsSelected,
+			Attributes: templ.Attributes{"data-testid": props.Attributes["data-testid"]},
 		},
 	)
 }

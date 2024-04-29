@@ -38,7 +38,8 @@ func sideMenuULStyle() templ.CSSClass {
 }
 
 type SideMenuProps struct {
-	Items []templ.Component
+	Items      []templ.Component
+	Attributes templ.Attributes
 }
 
 func SideMenu(props SideMenuProps) templ.Component {
@@ -72,7 +73,15 @@ func SideMenu(props SideMenuProps) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" data-testid=\"side-menu-component\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templ.RenderAttributes(ctx, templ_7745c5c3_Buffer, props.Attributes)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

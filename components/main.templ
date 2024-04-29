@@ -9,19 +9,22 @@ css mainMainStyle() {
 }
 
 type MainProps struct {
-	Count int
+	Count          int
 	HandlePostPath string
+	Attributes     templ.Attributes
 }
 
 templ Main(props MainProps) {
-	<main class={ mainMainStyle() } data-testid="main-component">
+	<main
+		class={ mainMainStyle() }
+		{ props.Attributes... }
+	>
 		<h2>
 			index page content
 		</h2>
-		@LitCounter()
 		@SimpleCounter(
 			SimpleCounterProps{
-				Count: props.Count,
+				Count:          props.Count,
 				HandlePostPath: props.HandlePostPath,
 			},
 		)

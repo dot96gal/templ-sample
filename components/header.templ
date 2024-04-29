@@ -18,23 +18,32 @@ css headerSiteStyle() {
 }
 
 type HeaderProps struct {
-	SiteText string
-	SiteLink string
+	SiteText   string
+	SiteLink   string
+	Attributes templ.Attributes
 }
 
 templ Header(props HeaderProps) {
-	<header class={ headerHeaderStyle } data-testid="header-component">
+	<header
+		class={ headerHeaderStyle }
+		{ props.Attributes... }
+	>
 		@IconButton(
-			IconButtonProps {
+			IconButtonProps{
 				Icon: IconMenu(),
 			},
 		)
-		<a class={ headerSiteStyle() } href={ templ.URL(props.SiteLink) }>
+		<a
+			class={ headerSiteStyle() }
+			href={ templ.URL(props.SiteLink) }
+		>
 			{ props.SiteText }
 		</a>
-		@SearchBox(SearchBoxProps{})
+		@SearchBox(
+			SearchBoxProps{},
+		)
 		@IconButton(
-			IconButtonProps {
+			IconButtonProps{
 				Icon: IconOption(),
 			},
 		)

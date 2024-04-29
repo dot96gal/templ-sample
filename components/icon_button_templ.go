@@ -24,7 +24,8 @@ func iconButtonButtonStyle() templ.CSSClass {
 }
 
 type IconButtonProps struct {
-	Icon templ.Component
+	Icon       templ.Component
+	Attributes templ.Attributes
 }
 
 // [TODO] ボタン押下時のアクションを追加する
@@ -59,7 +60,15 @@ func IconButton(props IconButtonProps) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" data-testid=\"icon-button-component\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templ.RenderAttributes(ctx, templ_7745c5c3_Buffer, props.Attributes)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

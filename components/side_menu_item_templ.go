@@ -37,9 +37,11 @@ func sideMenuItemHoverStyle(target string) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<style>\n    .menu-hover:hover {\n\t    background-color: rgb(94, 102, 115)\n    }\n  </style>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
+		if target == sideMenuItemHoverStyleClass {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<style>\n    .menu-hover:hover {\n\t    background-color: rgb(94, 102, 115)\n    }\n  </style>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 		}
 		if !templ_7745c5c3_IsBuffer {
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteTo(templ_7745c5c3_W)
@@ -53,6 +55,7 @@ type SideMenuItemProps struct {
 	Text       string
 	Link       string
 	IsSelected bool
+	Attributes templ.Attributes
 }
 
 func SideMenuItem(props SideMenuItemProps) templ.Component {
@@ -70,14 +73,13 @@ func SideMenuItem(props SideMenuItemProps) templ.Component {
 		ctx = templ.ClearChildren(ctx)
 		templ_7745c5c3_Err = IconLink(
 			IconLinkProps{
-				Icon: props.Icon,
-				Text: props.Text,
-				Link: props.Link,
-				CSSClass: []templ.KeyValue[templ.CSSClass, bool]{
-					templ.KV(sideMenuItemSelectedStyle(), props.IsSelected),
-				},
+				Icon:            props.Icon,
+				Text:            props.Text,
+				Link:            props.Link,
+				SelectedStyle:   templ.KV(sideMenuItemSelectedStyle(), props.IsSelected),
 				HoverStyleClass: sideMenuItemHoverStyleClass,
 				HoverStyle:      sideMenuItemHoverStyle(sideMenuItemHoverStyleClass),
+				Attributes:      templ.Attributes{"data-testid": props.Attributes["data-testid"]},
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -93,6 +95,7 @@ func SideMenuItem(props SideMenuItemProps) templ.Component {
 type SideMenuItemHomeProps struct {
 	Link       string
 	IsSelected bool
+	Attributes templ.Attributes
 }
 
 func SideMenuItemHome(props SideMenuItemHomeProps) templ.Component {
@@ -114,6 +117,7 @@ func SideMenuItemHome(props SideMenuItemHomeProps) templ.Component {
 				Text:       "home",
 				Link:       props.Link,
 				IsSelected: props.IsSelected,
+				Attributes: templ.Attributes{"data-testid": props.Attributes["data-testid"]},
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -129,6 +133,7 @@ func SideMenuItemHome(props SideMenuItemHomeProps) templ.Component {
 type SideMenuItemChartProps struct {
 	Link       string
 	IsSelected bool
+	Attributes templ.Attributes
 }
 
 func SideMenuItemChart(props SideMenuItemChartProps) templ.Component {
@@ -150,6 +155,7 @@ func SideMenuItemChart(props SideMenuItemChartProps) templ.Component {
 				Text:       "chart",
 				Link:       props.Link,
 				IsSelected: props.IsSelected,
+				Attributes: templ.Attributes{"data-testid": props.Attributes["data-testid"]},
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -165,6 +171,7 @@ func SideMenuItemChart(props SideMenuItemChartProps) templ.Component {
 type SideMenuItemTrendProps struct {
 	Link       string
 	IsSelected bool
+	Attributes templ.Attributes
 }
 
 func SideMenuItemTrend(props SideMenuItemTrendProps) templ.Component {
@@ -186,6 +193,7 @@ func SideMenuItemTrend(props SideMenuItemTrendProps) templ.Component {
 				Text:       "trend",
 				Link:       props.Link,
 				IsSelected: props.IsSelected,
+				Attributes: templ.Attributes{"data-testid": props.Attributes["data-testid"]},
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {

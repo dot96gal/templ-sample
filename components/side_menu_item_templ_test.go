@@ -2,18 +2,26 @@ package components
 
 import (
 	"context"
+	"fmt"
 	"io"
 	"strings"
 	"testing"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/a-h/templ"
 )
 
 func TestSideMenuItemHome(t *testing.T) {
+	dataTestid := "side-menu-item-home"
+
 	r, w := io.Pipe()
 
 	go func() {
-		props := SideMenuItemHomeProps{Link: "/", IsSelected: true}
+		props := SideMenuItemHomeProps{
+			Link:       "/",
+			IsSelected: true,
+			Attributes: templ.Attributes{"data-testid": dataTestid},
+		}
 		_ = SideMenuItemHome(props).Render(context.Background(), w)
 		_ = w.Close()
 	}()
@@ -23,7 +31,7 @@ func TestSideMenuItemHome(t *testing.T) {
 		t.Fatalf("failed to read template: %v", err)
 	}
 
-	component := doc.Find(`[data-testid="icon-link-component"]`)
+	component := doc.Find(fmt.Sprintf(`[data-testid="%s"]`, dataTestid))
 	if component.Length() == 0 {
 		t.Error("expected data-testid attribute to be rendered, but it wasn't")
 	}
@@ -35,10 +43,16 @@ func TestSideMenuItemHome(t *testing.T) {
 }
 
 func TestSideMenuItemChart(t *testing.T) {
+	dataTestid := "side-menu-item-chart"
+
 	r, w := io.Pipe()
 
 	go func() {
-		props := SideMenuItemChartProps{Link: "/", IsSelected: true}
+		props := SideMenuItemChartProps{
+			Link:       "/",
+			IsSelected: true,
+			Attributes: templ.Attributes{"data-testid": dataTestid},
+		}
 		_ = SideMenuItemChart(props).Render(context.Background(), w)
 		_ = w.Close()
 	}()
@@ -48,7 +62,7 @@ func TestSideMenuItemChart(t *testing.T) {
 		t.Fatalf("failed to read template: %v", err)
 	}
 
-	component := doc.Find(`[data-testid="icon-link-component"]`)
+	component := doc.Find(fmt.Sprintf(`[data-testid="%s"]`, dataTestid))
 	if component.Length() == 0 {
 		t.Error("expected data-testid attribute to be rendered, but it wasn't")
 	}
@@ -60,10 +74,16 @@ func TestSideMenuItemChart(t *testing.T) {
 }
 
 func TestSideMenuItemTrend(t *testing.T) {
+	dataTestid := "side-menu-item-trend"
+
 	r, w := io.Pipe()
 
 	go func() {
-		props := SideMenuItemTrendProps{Link: "/", IsSelected: true}
+		props := SideMenuItemTrendProps{
+			Link:       "/",
+			IsSelected: true,
+			Attributes: templ.Attributes{"data-testid": dataTestid},
+		}
 		_ = SideMenuItemTrend(props).Render(context.Background(), w)
 		_ = w.Close()
 	}()
@@ -73,7 +93,7 @@ func TestSideMenuItemTrend(t *testing.T) {
 		t.Fatalf("failed to read template: %v", err)
 	}
 
-	component := doc.Find(`[data-testid="icon-link-component"]`)
+	component := doc.Find(fmt.Sprintf(`[data-testid="%s"]`, dataTestid))
 	if component.Length() == 0 {
 		t.Error("expected data-testid attribute to be rendered, but it wasn't")
 	}

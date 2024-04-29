@@ -93,6 +93,7 @@ func indexPageFooterStyle() templ.CSSClass {
 type IndexPageProps struct {
 	Count          int
 	HandlePostPath string
+	Attributes     templ.Attributes
 }
 
 func IndexPage(props IndexPageProps) templ.Component {
@@ -160,6 +161,9 @@ func IndexPage(props IndexPageProps) templ.Component {
 			components.HeaderProps{
 				SiteText: "Templ",
 				SiteLink: "/",
+				Attributes: templ.Attributes{
+					"data-testid": props.Attributes["data-testid-header"],
+				},
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -213,6 +217,9 @@ func IndexPage(props IndexPageProps) templ.Component {
 						},
 					),
 				},
+				Attributes: templ.Attributes{
+					"data-testid": props.Attributes["data-testid-side-menu"],
+				},
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -248,6 +255,9 @@ func IndexPage(props IndexPageProps) templ.Component {
 			components.MainProps{
 				Count:          props.Count,
 				HandlePostPath: props.HandlePostPath,
+				Attributes: templ.Attributes{
+					"data-testid": props.Attributes["data-testid-main"],
+				},
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -282,6 +292,9 @@ func IndexPage(props IndexPageProps) templ.Component {
 		templ_7745c5c3_Err = components.Footer(
 			components.FooterProps{
 				Copyright: "2024 dot96gal All Rights Reserved.",
+				Attributes: templ.Attributes{
+					"data-testid": props.Attributes["data-testid-footer"],
+				},
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {

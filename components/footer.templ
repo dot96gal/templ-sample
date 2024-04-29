@@ -6,11 +6,15 @@ css footerFooterStyle() {
 }
 
 type FooterProps struct {
-	Copyright string
+	Copyright  string
+	Attributes templ.Attributes
 }
 
 templ Footer(props FooterProps) {
-	<footer class={ footerFooterStyle() } data-testid="footer-component">
+	<footer
+		class={ footerFooterStyle() }
+		{ props.Attributes... }
+	>
 		&copy; { props.Copyright }
 	</footer>
 }

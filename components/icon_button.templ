@@ -7,12 +7,16 @@ css iconButtonButtonStyle() {
 }
 
 type IconButtonProps struct {
-	Icon templ.Component
+	Icon       templ.Component
+	Attributes templ.Attributes
 }
 
 // [TODO] ボタン押下時のアクションを追加する
 templ IconButton(props IconButtonProps) {
-	<button class={ iconButtonButtonStyle() } data-testid="icon-button-component">
+	<button
+		class={ iconButtonButtonStyle() }
+		{ props.Attributes... }
+	>
 		@props.Icon
 	</button>
 }

@@ -90,14 +90,15 @@ templ SimpleCounterIndicator(props SimpleCounterIndicatorProps) {
 }
 
 type SimpleCounterProps struct {
-	Count int
+	Count          int
 	HandlePostPath string
+	Attributes     templ.Attributes
 }
 
 templ SimpleCounter(props SimpleCounterProps) {
 	<div
 		class={ simpleCounterCounterStyle() }
-		data-testid="simple-counter-component"
+		{ props.Attributes... }
 	>
 		<span
 			class={ simpleCounterCountIndicatorStyle() }
