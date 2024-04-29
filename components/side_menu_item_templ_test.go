@@ -7,21 +7,13 @@ import (
 	"testing"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/a-h/templ"
 )
 
-func TestIconLink(t *testing.T) {
+func TestSideMenuItem(t *testing.T) {
 	r, w := io.Pipe()
 
 	go func() {
-		_ = IconLink(
-			sideMenuItemHomeIcon(),
-			"home",
-			"/",
-			templ.KV(sideMenuItemSelectedStyle(), true),
-			sideMenuItemHoverStyleClass,
-			sideMenuItemHoverStyle(sideMenuItemHoverStyleClass),
-		).Render(context.Background(), w)
+		_ = SideMenuItemHome("/", true).Render(context.Background(), w)
 		_ = w.Close()
 	}()
 

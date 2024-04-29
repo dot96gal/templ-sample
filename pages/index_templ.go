@@ -181,7 +181,11 @@ func IndexPage(count int, handlePostPath string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = components.SideMenu().Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = components.SideMenu(
+			components.SideMenuItemHome("/", true),
+			components.SideMenuItemChart("/", false),
+			components.SideMenuItemTrend("/", false),
+		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

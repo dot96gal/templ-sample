@@ -13,7 +13,7 @@ func TestSideMenu(t *testing.T) {
 	r, w := io.Pipe()
 
 	go func() {
-		_ = SideMenu().Render(context.Background(), w)
+		_ = SideMenu(SideMenuItemHome("/", true)).Render(context.Background(), w)
 		_ = w.Close()
 	}()
 

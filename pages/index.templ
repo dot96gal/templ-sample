@@ -64,7 +64,11 @@ templ IndexPage(count int, handlePostPath string) {
 					@components.Header("Templ", "/")
 				</div>
 				<div class={ indexPageSideMenuStyle() }>
-					@components.SideMenu()
+					@components.SideMenu(
+						components.SideMenuItemHome("/", true),
+						components.SideMenuItemChart("/", false),
+						components.SideMenuItemTrend("/", false),
+					)
 				</div>
 				<div class={ indexPageMainStyle() }>
 					@components.Main(count, handlePostPath)
