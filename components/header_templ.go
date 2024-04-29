@@ -31,8 +31,8 @@ func headerSiteStyle() templ.CSSClass {
 	templ_7745c5c3_CSSBuilder.WriteString(`font-size:16px;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`font-weight:bold;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`padding:8px;`)
-	templ_7745c5c3_CSSBuilder.WriteString(`color:inherit;`)
-	templ_7745c5c3_CSSBuilder.WriteString(`text-decoration:inherit;`)
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`color`, COLOR_BLACK)))
+	templ_7745c5c3_CSSBuilder.WriteString(`text-decoration:none;`)
 	templ_7745c5c3_CSSID := templ.CSSID(`headerSiteStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,

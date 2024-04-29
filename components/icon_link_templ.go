@@ -22,7 +22,7 @@ func iconLinkLinkStyle() templ.CSSClass {
 	templ_7745c5c3_CSSBuilder.WriteString(`text-align:left;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`padding:16px;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`border-radius:8px;`)
-	templ_7745c5c3_CSSBuilder.WriteString(`color:inherit;`)
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`color`, COLOR_WHITE)))
 	templ_7745c5c3_CSSID := templ.CSSID(`iconLinkLinkStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,

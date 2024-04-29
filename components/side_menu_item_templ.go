@@ -13,7 +13,7 @@ import "strings"
 
 func sideMenuItemSelectedStyle() templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
-	templ_7745c5c3_CSSBuilder.WriteString(`background-color:rgb(75, 84, 98);`)
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-color`, COLOR_DARK_BLUE_LIGHTER01)))
 	templ_7745c5c3_CSSID := templ.CSSID(`sideMenuItemSelectedStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
@@ -24,6 +24,7 @@ func sideMenuItemSelectedStyle() templ.CSSClass {
 // [TODO] :hover疑似要素に対応したらリファクタリングする
 const sideMenuItemHoverStyleClass = "menu-hover"
 
+// [TODO] <style>の中で変数を利用できるようになったらリファクタリングする
 func sideMenuItemHoverStyle(target string) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
@@ -38,7 +39,7 @@ func sideMenuItemHoverStyle(target string) templ.Component {
 		}
 		ctx = templ.ClearChildren(ctx)
 		if target == sideMenuItemHoverStyleClass {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<style>\n    .menu-hover:hover {\n\t    background-color: rgb(94, 102, 115)\n    }\n  </style>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<style>\n    .menu-hover:hover {\n\t    background-color: #5e6673;\n    }\n  </style>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

@@ -34,7 +34,7 @@ func searchBoxInputStyle() templ.CSSClass {
 	templ_7745c5c3_CSSBuilder.WriteString(`padding-left:48px;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`padding-right:8px;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`padding-bottom:8px;`)
-	templ_7745c5c3_CSSBuilder.WriteString(`background-color:#ffffff;`)
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-color`, COLOR_WHITE)))
 	templ_7745c5c3_CSSBuilder.WriteString(`border:none;`)
 	templ_7745c5c3_CSSID := templ.CSSID(`searchBoxInputStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{

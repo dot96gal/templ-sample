@@ -1,16 +1,9 @@
 package pages
 
 import (
-	"github.com/dot96gal/templ-sample/components"
-)
+	"fmt"
 
-var (
-	blackBlue  = "#2A3240"
-	darkBlue   = "#374151"
-	lightBlue  = "#e2e8f0"
-	whiteSmoke = "#f5f5f5"
-	black      = "#000000"
-	white      = "#ffffff"
+	"github.com/dot96gal/templ-sample/components"
 )
 
 css indexPageContainerStyle() {
@@ -25,28 +18,27 @@ css indexPageContainerStyle() {
 
 css indexPageHeaderStyle() {
 	grid-area: header;
-	background-color: { lightBlue };
-	color: { black };
-	border-bottom: solid 1px rgb(0 0 0 / 20%);
+	background-color: { components.COLOR_LIGHT_BLUE };
+	color: { components.COLOR_BLACK };
+	border-bottom: { fmt.Sprintf("solid 1px %s", components.COLOR_GRAY) };
 }
 
 css indexPageSideMenuStyle() {
 	grid-area: side-menu;
-	background-color: { darkBlue };
-	color: { white };
+	background-color: { components.COLOR_DARK_BLUE };
+	color: { components.COLOR_WHITE };
 }
 
 css indexPageMainStyle() {
 	grid-area: main;
-	background-color: { whiteSmoke };
-	color: { black };
+	background-color: { components.COLOR_WHITE_SMOKE };
+	color: { components.COLOR_BLACK };
 }
 
 css indexPageFooterStyle() {
 	grid-area: footer;
-	background-color: { blackBlue };
-	color: { white };
-	border-top: solid 1px rgb(0 0 0 / 20%);
+	background-color: { components.COLOR_BLACK_BLUE };
+	color: { components.COLOR_WHITE };
 }
 
 type IndexPageProps struct {

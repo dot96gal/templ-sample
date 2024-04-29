@@ -12,16 +12,9 @@ import "bytes"
 import "strings"
 
 import (
-	"github.com/dot96gal/templ-sample/components"
-)
+	"fmt"
 
-var (
-	blackBlue  = "#2A3240"
-	darkBlue   = "#374151"
-	lightBlue  = "#e2e8f0"
-	whiteSmoke = "#f5f5f5"
-	black      = "#000000"
-	white      = "#ffffff"
+	"github.com/dot96gal/templ-sample/components"
 )
 
 func indexPageContainerStyle() templ.CSSClass {
@@ -43,9 +36,9 @@ func indexPageContainerStyle() templ.CSSClass {
 func indexPageHeaderStyle() templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
 	templ_7745c5c3_CSSBuilder.WriteString(`grid-area:header;`)
-	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-color`, lightBlue)))
-	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`color`, black)))
-	templ_7745c5c3_CSSBuilder.WriteString(`border-bottom:solid 1px rgb(0 0 0 / 20%);`)
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-color`, components.COLOR_LIGHT_BLUE)))
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`color`, components.COLOR_BLACK)))
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`border-bottom`, fmt.Sprintf("solid 1px %s", components.COLOR_GRAY))))
 	templ_7745c5c3_CSSID := templ.CSSID(`indexPageHeaderStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
@@ -56,8 +49,8 @@ func indexPageHeaderStyle() templ.CSSClass {
 func indexPageSideMenuStyle() templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
 	templ_7745c5c3_CSSBuilder.WriteString(`grid-area:side-menu;`)
-	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-color`, darkBlue)))
-	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`color`, white)))
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-color`, components.COLOR_DARK_BLUE)))
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`color`, components.COLOR_WHITE)))
 	templ_7745c5c3_CSSID := templ.CSSID(`indexPageSideMenuStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
@@ -68,8 +61,8 @@ func indexPageSideMenuStyle() templ.CSSClass {
 func indexPageMainStyle() templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
 	templ_7745c5c3_CSSBuilder.WriteString(`grid-area:main;`)
-	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-color`, whiteSmoke)))
-	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`color`, black)))
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-color`, components.COLOR_WHITE_SMOKE)))
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`color`, components.COLOR_BLACK)))
 	templ_7745c5c3_CSSID := templ.CSSID(`indexPageMainStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
@@ -80,9 +73,8 @@ func indexPageMainStyle() templ.CSSClass {
 func indexPageFooterStyle() templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
 	templ_7745c5c3_CSSBuilder.WriteString(`grid-area:footer;`)
-	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-color`, blackBlue)))
-	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`color`, white)))
-	templ_7745c5c3_CSSBuilder.WriteString(`border-top:solid 1px rgb(0 0 0 / 20%);`)
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-color`, components.COLOR_BLACK_BLUE)))
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`color`, components.COLOR_WHITE)))
 	templ_7745c5c3_CSSID := templ.CSSID(`indexPageFooterStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,

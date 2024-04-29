@@ -1,17 +1,18 @@
 package components
 
 css sideMenuItemSelectedStyle() {
-	background-color: rgb(75, 84, 98);
+	background-color: { COLOR_DARK_BLUE_LIGHTER01 };
 }
 
 // [TODO] :hover疑似要素に対応したらリファクタリングする
 const sideMenuItemHoverStyleClass = "menu-hover"
 
+// [TODO] <style>の中で変数を利用できるようになったらリファクタリングする
 templ sideMenuItemHoverStyle(target string) {
 	if target == sideMenuItemHoverStyleClass {
 		<style>
     .menu-hover:hover {
-	    background-color: rgb(94, 102, 115)
+	    background-color: #5e6673;
     }
   </style>
 	}

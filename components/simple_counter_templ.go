@@ -62,9 +62,9 @@ func simpleCounterCounterStyle() templ.CSSClass {
 	templ_7745c5c3_CSSBuilder.WriteString(`text-align:center;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`width:fit-content;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`padding:24px;`)
-	templ_7745c5c3_CSSBuilder.WriteString(`border:1px solid #ccc;`)
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`border`, fmt.Sprintf("1px solid %s", COLOR_BLACK_BLUE))))
 	templ_7745c5c3_CSSBuilder.WriteString(`border-radius:8px;`)
-	templ_7745c5c3_CSSBuilder.WriteString(`background-color:#ffffff;`)
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-color`, COLOR_WHITE)))
 	templ_7745c5c3_CSSID := templ.CSSID(`simpleCounterCounterStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
@@ -89,9 +89,9 @@ func simpleCounterCountButtonStyle() templ.CSSClass {
 	templ_7745c5c3_CSSBuilder.WriteString(`width:100%;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`margin-top:16px;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`padding:8px 16px;`)
-	templ_7745c5c3_CSSBuilder.WriteString(`border:1px solid #ccc;`)
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`border`, fmt.Sprintf("1px solid %s", COLOR_BLACK_BLUE))))
 	templ_7745c5c3_CSSBuilder.WriteString(`border-radius:8px;`)
-	templ_7745c5c3_CSSBuilder.WriteString(`background-color:#ffffff;`)
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-color`, COLOR_WHITE)))
 	templ_7745c5c3_CSSBuilder.WriteString(`font-size:16px;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`font-weight:bold;`)
 	templ_7745c5c3_CSSBuilder.WriteString(`cursor:pointer;`)
