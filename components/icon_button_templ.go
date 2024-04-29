@@ -14,8 +14,6 @@ import "strings"
 func iconButtonButtonStyle() templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
 	templ_7745c5c3_CSSBuilder.WriteString(`display:block;`)
-	templ_7745c5c3_CSSBuilder.WriteString(`width:24px;`)
-	templ_7745c5c3_CSSBuilder.WriteString(`height:24px;`)
 	templ_7745c5c3_CSSID := templ.CSSID(`iconButtonButtonStyle`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
