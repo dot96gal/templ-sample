@@ -32,7 +32,7 @@ func TestIndexHandler_Get(t *testing.T) {
 	}
 }
 
-func TestIndexHandler_Post(t *testing.T) {
+func TestIndexHandler_Post_CountUp(t *testing.T) {
 	state := storage.NewState()
 	handlePostPath := "/"
 	indexHandler := NewIndexHandler(state, handlePostPath)
@@ -57,6 +57,36 @@ func TestIndexHandler_Post(t *testing.T) {
 	}
 
 	expected := "2"
+	if actual := doc.Text(); actual != expected {
+		t.Errorf("expected %q, got %q", expected, actual)
+	}
+}
+
+func TestIndexHandler_Post_CountDown(t *testing.T) {
+	state := storage.NewState()
+	handlePostPath := "/"
+	indexHandler := NewIndexHandler(state, handlePostPath)
+
+	form := url.Values{}
+	form.Add(components.SIMPLE_COUNTER_OPERATION_KEY, string(components.SIMPLE_COUNTER_OPERATION_DOWN))
+	body := strings.NewReader(form.Encode())
+
+	w := httptest.NewRecorder()
+	r := httptest.NewRequest(
+		http.MethodPost,
+		"/",
+		body,
+	)
+	r.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+
+	indexHandler.Post(w, r)
+
+	doc, err := goquery.NewDocumentFromReader(w.Result().Body)
+	if err != nil {
+		t.Fatalf("failed to read template: %v", err)
+	}
+
+	expected := "0"
 	if actual := doc.Text(); actual != expected {
 		t.Errorf("expected %q, got %q", expected, actual)
 	}
