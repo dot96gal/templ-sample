@@ -15,10 +15,12 @@ func TestIconLink(t *testing.T) {
 
 	go func() {
 		props := IconLinkProps{
-			Icon:            sideMenuItemHomeIcon(),
-			Text:            "home",
-			Link:            "/",
-			SelectedStyleKV: templ.KV(sideMenuItemSelectedStyle(), true),
+			Icon: IconHome(),
+			Text: "home",
+			Link: "/",
+			CSSClass: []templ.KeyValue[templ.CSSClass, bool]{
+				templ.KV(sideMenuItemSelectedStyle(), true),
+			},
 			HoverStyleClass: sideMenuItemHoverStyleClass,
 			HoverStyle:      sideMenuItemHoverStyle(sideMenuItemHoverStyleClass),
 		}

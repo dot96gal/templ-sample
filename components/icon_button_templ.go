@@ -77,5 +77,3 @@ func IconButton(props IconButtonProps) templ.Component {
 		return templ_7745c5c3_Err
 	})
 }
-
-// TODO アイコンごとのボタンを作成してリファクタリングする

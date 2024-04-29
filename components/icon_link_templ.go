@@ -45,7 +45,7 @@ type IconLinkProps struct {
 	Icon            templ.Component
 	Text            string
 	Link            string
-	SelectedStyleKV templ.KeyValue[templ.CSSClass, bool]
+	CSSClass        []templ.KeyValue[templ.CSSClass, bool]
 	HoverStyleClass string
 	HoverStyle      templ.Component
 }
@@ -68,7 +68,7 @@ func IconLink(props IconLinkProps) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var2 = []any{iconLinkLinkStyle(), props.SelectedStyleKV, props.HoverStyleClass}
+		var templ_7745c5c3_Var2 = []any{iconLinkLinkStyle(), props.CSSClass, props.HoverStyleClass}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -148,5 +148,3 @@ func IconLink(props IconLinkProps) templ.Component {
 		return templ_7745c5c3_Err
 	})
 }
-
-// TODO アイコンごとのリンクを作成してリファクタリングする

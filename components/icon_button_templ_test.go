@@ -13,7 +13,7 @@ func TestIconButton(t *testing.T) {
 	r, w := io.Pipe()
 
 	go func() {
-		props := IconButtonProps{Icon: headerMenuIcon()}
+		props := IconButtonProps{Icon: IconMenu()}
 		_ = IconButton(props).Render(context.Background(), w)
 		_ = w.Close()
 	}()

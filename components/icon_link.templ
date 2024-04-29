@@ -22,7 +22,7 @@ type IconLinkProps struct {
 	Icon templ.Component
 	Text string
 	Link string
-	SelectedStyleKV templ.KeyValue[templ.CSSClass, bool]
+	CSSClass []templ.KeyValue[templ.CSSClass, bool]
 	HoverStyleClass string
 	HoverStyle templ.Component
 }
@@ -31,7 +31,7 @@ type IconLinkProps struct {
 templ IconLink(props IconLinkProps) {
 	@props.HoverStyle
 	<a 
-		class={ iconLinkLinkStyle(), props.SelectedStyleKV, props.HoverStyleClass }
+		class={ iconLinkLinkStyle(), props.CSSClass, props.HoverStyleClass }
 		href={ templ.URL(props.Link) }
 		data-testid="icon-link-component"
 	>
@@ -41,5 +41,3 @@ templ IconLink(props IconLinkProps) {
 		{ props.Text }
 	</a>
 }
-
-// TODO アイコンごとのリンクを作成してリファクタリングする

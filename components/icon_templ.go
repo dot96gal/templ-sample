@@ -9,22 +9,8 @@ import "github.com/a-h/templ"
 import "context"
 import "io"
 import "bytes"
-import "strings"
 
-func sideMenuItemSelectedStyle() templ.CSSClass {
-	var templ_7745c5c3_CSSBuilder strings.Builder
-	templ_7745c5c3_CSSBuilder.WriteString(`background-color:rgb(75, 84, 98);`)
-	templ_7745c5c3_CSSID := templ.CSSID(`sideMenuItemSelectedStyle`, templ_7745c5c3_CSSBuilder.String())
-	return templ.ComponentCSSClass{
-		ID:    templ_7745c5c3_CSSID,
-		Class: templ.SafeCSS(`.` + templ_7745c5c3_CSSID + `{` + templ_7745c5c3_CSSBuilder.String() + `}`),
-	}
-}
-
-// [TODO] :hover疑似要素に対応したらリファクタリングする
-const sideMenuItemHoverStyleClass = "menu-hover"
-
-func sideMenuItemHoverStyle(target string) templ.Component {
+func IconMenu() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -37,7 +23,7 @@ func sideMenuItemHoverStyle(target string) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<style>\n    .menu-hover:hover {\n\t    background-color: rgb(94, 102, 115)\n    }\n  </style>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"w-6 h-6\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5\"></path></svg>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -48,14 +34,7 @@ func sideMenuItemHoverStyle(target string) templ.Component {
 	})
 }
 
-type SideMenuItemProps struct {
-	Icon       templ.Component
-	Text       string
-	Link       string
-	IsSelected bool
-}
-
-func SideMenuItem(props SideMenuItemProps) templ.Component {
+func IconOption() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -68,18 +47,7 @@ func SideMenuItem(props SideMenuItemProps) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = IconLink(
-			IconLinkProps{
-				Icon: props.Icon,
-				Text: props.Text,
-				Link: props.Link,
-				CSSClass: []templ.KeyValue[templ.CSSClass, bool]{
-					templ.KV(sideMenuItemSelectedStyle(), props.IsSelected),
-				},
-				HoverStyleClass: sideMenuItemHoverStyleClass,
-				HoverStyle:      sideMenuItemHoverStyle(sideMenuItemHoverStyleClass),
-			},
-		).Render(ctx, templ_7745c5c3_Buffer)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"w-6 h-6\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z\"></path></svg>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -90,12 +58,7 @@ func SideMenuItem(props SideMenuItemProps) templ.Component {
 	})
 }
 
-type SideMenuItemHomeProps struct {
-	Link       string
-	IsSelected bool
-}
-
-func SideMenuItemHome(props SideMenuItemHomeProps) templ.Component {
+func IconHome() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -108,14 +71,7 @@ func SideMenuItemHome(props SideMenuItemHomeProps) templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = SideMenuItem(
-			SideMenuItemProps{
-				Icon:       IconHome(),
-				Text:       "home",
-				Link:       props.Link,
-				IsSelected: props.IsSelected,
-			},
-		).Render(ctx, templ_7745c5c3_Buffer)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"w-6 h-6\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25\"></path></svg>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -126,12 +82,7 @@ func SideMenuItemHome(props SideMenuItemHomeProps) templ.Component {
 	})
 }
 
-type SideMenuItemChartProps struct {
-	Link       string
-	IsSelected bool
-}
-
-func SideMenuItemChart(props SideMenuItemChartProps) templ.Component {
+func IconChart() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -144,14 +95,7 @@ func SideMenuItemChart(props SideMenuItemChartProps) templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = SideMenuItem(
-			SideMenuItemProps{
-				Icon:       IconChart(),
-				Text:       "chart",
-				Link:       props.Link,
-				IsSelected: props.IsSelected,
-			},
-		).Render(ctx, templ_7745c5c3_Buffer)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"w-6 h-6\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z\"></path></svg>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -162,12 +106,7 @@ func SideMenuItemChart(props SideMenuItemChartProps) templ.Component {
 	})
 }
 
-type SideMenuItemTrendProps struct {
-	Link       string
-	IsSelected bool
-}
-
-func SideMenuItemTrend(props SideMenuItemTrendProps) templ.Component {
+func IconTrend() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -180,14 +119,7 @@ func SideMenuItemTrend(props SideMenuItemTrendProps) templ.Component {
 			templ_7745c5c3_Var5 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = SideMenuItem(
-			SideMenuItemProps{
-				Icon:       IconTrend(),
-				Text:       "trend",
-				Link:       props.Link,
-				IsSelected: props.IsSelected,
-			},
-		).Render(ctx, templ_7745c5c3_Buffer)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"w-6 h-6\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941\"></path></svg>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
