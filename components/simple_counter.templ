@@ -28,7 +28,7 @@ func ParseSimpleCounterRequest(values url.Values) SimpleCounterRequest {
 	}
 }
 
-func newSimpleCounterRequestJSON(operation SimpleCounterOperation) string {
+func NewSimpleCounterRequestJSON(operation SimpleCounterOperation) string {
 	r := SimpleCounterRequest{
 		Operation: operation,
 	}
@@ -112,7 +112,7 @@ templ SimpleCounter(props SimpleCounterProps) {
 		<button
 			class={ simpleCounterCountButtonStyle(), simpleCounterCountButtonUpStyle() }
 			hx-post={ props.HandlePostPath }
-			hx-vals={ newSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_UP) }
+			hx-vals={ NewSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_UP) }
 			hx-target={ fmt.Sprintf("previous .%s", simpleCounterCountIndicatorStyle().ClassName()) }
 			hx-swap="innerHTML"
 		>
@@ -121,7 +121,7 @@ templ SimpleCounter(props SimpleCounterProps) {
 		<button
 			class={ simpleCounterCountButtonStyle(), simpleCounterCountButtonDownStyle() }
 			hx-post={ props.HandlePostPath }
-			hx-vals={ newSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_DOWN) }
+			hx-vals={ NewSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_DOWN) }
 			hx-target={ fmt.Sprintf("previous .%s", simpleCounterCountIndicatorStyle().ClassName()) }
 			hx-swap="innerHTML"
 		>

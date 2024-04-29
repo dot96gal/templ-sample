@@ -39,7 +39,7 @@ func ParseSimpleCounterRequest(values url.Values) SimpleCounterRequest {
 	}
 }
 
-func newSimpleCounterRequestJSON(operation SimpleCounterOperation) string {
+func NewSimpleCounterRequestJSON(operation SimpleCounterOperation) string {
 	r := SimpleCounterRequest{
 		Operation: operation,
 	}
@@ -274,7 +274,7 @@ func SimpleCounter(props SimpleCounterProps) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var11 string
-		templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(newSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_UP))
+		templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(NewSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_UP))
 		if templ_7745c5c3_Err != nil {
 			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/simple_counter.templ`, Line: 115, Col: 69}
 		}
@@ -335,7 +335,7 @@ func SimpleCounter(props SimpleCounterProps) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var16 string
-		templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(newSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_DOWN))
+		templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(NewSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_DOWN))
 		if templ_7745c5c3_Err != nil {
 			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/simple_counter.templ`, Line: 124, Col: 71}
 		}
