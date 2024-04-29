@@ -29,13 +29,26 @@ templ headerOptionIcon() {
 	</svg>
 }
 
-templ Header(siteText string, siteLink string) {
+type HeaderProps struct {
+	SiteText string
+	SiteLink string
+}
+
+templ Header(props HeaderProps) {
 	<header class={ headerHeaderStyle } data-testid="header-component">
-		@IconButton(headerMenuIcon())
-		<a class={ headerSiteStyle() } href={ templ.URL(siteLink) }>
-			{ siteText }
+		@IconButton(
+			IconButtonProps {
+				Icon: headerMenuIcon(),
+			},
+		)
+		<a class={ headerSiteStyle() } href={ templ.URL(props.SiteLink) }>
+			{ props.SiteText }
 		</a>
-		@SearchBox()
-		@IconButton(headerOptionIcon())
+		@SearchBox(SearchBoxProps{})
+		@IconButton(
+			IconButtonProps {
+				Icon: headerOptionIcon(),
+			},
+		)
 	</header>
 }

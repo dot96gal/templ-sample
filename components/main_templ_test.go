@@ -13,7 +13,8 @@ func TestMain(t *testing.T) {
 	r, w := io.Pipe()
 
 	go func() {
-		_ = Main(0, "/").Render(context.Background(), w)
+		props := MainProps{Count: 0, HandlePostPath: "/"}
+		_ = Main(props).Render(context.Background(), w)
 		_ = w.Close()
 	}()
 

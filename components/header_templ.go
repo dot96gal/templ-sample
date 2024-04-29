@@ -88,7 +88,12 @@ func headerOptionIcon() templ.Component {
 	})
 }
 
-func Header(siteText string, siteLink string) templ.Component {
+type HeaderProps struct {
+	SiteText string
+	SiteLink string
+}
+
+func Header(props HeaderProps) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -123,7 +128,11 @@ func Header(siteText string, siteLink string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = IconButton(headerMenuIcon()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = IconButton(
+			IconButtonProps{
+				Icon: headerMenuIcon(),
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -149,7 +158,7 @@ func Header(siteText string, siteLink string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var8 templ.SafeURL = templ.URL(siteLink)
+		var templ_7745c5c3_Var8 templ.SafeURL = templ.URL(props.SiteLink)
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(string(templ_7745c5c3_Var8)))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -159,9 +168,9 @@ func Header(siteText string, siteLink string) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var9 string
-		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(siteText)
+		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(props.SiteText)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/header.templ`, Line: 36, Col: 13}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/header.templ`, Line: 45, Col: 19}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 		if templ_7745c5c3_Err != nil {
@@ -171,11 +180,15 @@ func Header(siteText string, siteLink string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = SearchBox().Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = SearchBox(SearchBoxProps{}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = IconButton(headerOptionIcon()).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = IconButton(
+			IconButtonProps{
+				Icon: headerOptionIcon(),
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

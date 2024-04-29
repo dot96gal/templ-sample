@@ -37,7 +37,11 @@ func sideMenuULStyle() templ.CSSClass {
 	}
 }
 
-func SideMenu(items ...templ.Component) templ.Component {
+type SideMenuProps struct {
+	Items []templ.Component
+}
+
+func SideMenu(props SideMenuProps) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -94,7 +98,7 @@ func SideMenu(items ...templ.Component) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		for _, item := range items {
+		for _, item := range props.Items {
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<li>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err

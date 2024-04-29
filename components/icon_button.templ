@@ -6,9 +6,15 @@ css iconButtonButtonStyle() {
 	height: 24px;
 }
 
+type IconButtonProps struct {
+	Icon templ.Component
+}
+
 // [TODO] ボタン押下時のアクションを追加する
-templ IconButton(icon templ.Component) {
+templ IconButton(props IconButtonProps) {
 	<button class={ iconButtonButtonStyle() } data-testid="icon-button-component">
-		@icon
+		@props.Icon
 	</button>
 }
+
+// TODO アイコンごとのボタンを作成してリファクタリングする

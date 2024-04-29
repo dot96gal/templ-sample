@@ -18,17 +18,28 @@ css iconLinkIconStyle() {
 	height: 24px;
 }
 
+type IconLinkProps struct {
+	Icon templ.Component
+	Text string
+	Link string
+	SelectedStyleKV templ.KeyValue[templ.CSSClass, bool]
+	HoverStyleClass string
+	HoverStyle templ.Component
+}
+
 // [TODO] :hover疑似要素に対応したらリファクタリングする
-templ IconLink(icon templ.Component, targetText string, targetLink string, selectedStyleKV templ.KeyValue[templ.CSSClass, bool], hoverStyleClass string, hoverStyle templ.Component) {
-	@hoverStyle
+templ IconLink(props IconLinkProps) {
+	@props.HoverStyle
 	<a 
-		class={ iconLinkLinkStyle(), selectedStyleKV, hoverStyleClass }
-		href={ templ.URL(targetLink) }
+		class={ iconLinkLinkStyle(), props.SelectedStyleKV, props.HoverStyleClass }
+		href={ templ.URL(props.Link) }
 		data-testid="icon-link-component"
 	>
 		<div class={ iconLinkIconStyle() }>
-			@icon
+			@props.Icon
 		</div>
-		{ targetText }
+		{ props.Text }
 	</a>
 }
+
+// TODO アイコンごとのリンクを作成してリファクタリングする

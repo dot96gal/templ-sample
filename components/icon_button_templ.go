@@ -23,8 +23,12 @@ func iconButtonButtonStyle() templ.CSSClass {
 	}
 }
 
+type IconButtonProps struct {
+	Icon templ.Component
+}
+
 // [TODO] ボタン押下時のアクションを追加する
-func IconButton(icon templ.Component) templ.Component {
+func IconButton(props IconButtonProps) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -59,7 +63,7 @@ func IconButton(icon templ.Component) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = icon.Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = props.Icon.Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -73,3 +77,5 @@ func IconButton(icon templ.Component) templ.Component {
 		return templ_7745c5c3_Err
 	})
 }
+
+// TODO アイコンごとのボタンを作成してリファクタリングする

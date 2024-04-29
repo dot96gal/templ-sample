@@ -90,7 +90,12 @@ func indexPageFooterStyle() templ.CSSClass {
 	}
 }
 
-func IndexPage(count int, handlePostPath string) templ.Component {
+type IndexPageProps struct {
+	Count          int
+	HandlePostPath string
+}
+
+func IndexPage(props IndexPageProps) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -151,7 +156,12 @@ func IndexPage(count int, handlePostPath string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = components.Header("Templ", "/").Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = components.Header(
+			components.HeaderProps{
+				SiteText: "Templ",
+				SiteLink: "/",
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -182,9 +192,28 @@ func IndexPage(count int, handlePostPath string) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = components.SideMenu(
-			components.SideMenuItemHome("/", true),
-			components.SideMenuItemChart("/", false),
-			components.SideMenuItemTrend("/", false),
+			components.SideMenuProps{
+				Items: []templ.Component{
+					components.SideMenuItemHome(
+						components.SideMenuItemHomeProps{
+							Link:       "/",
+							IsSelected: true,
+						},
+					),
+					components.SideMenuItemChart(
+						components.SideMenuItemChartProps{
+							Link:       "/",
+							IsSelected: false,
+						},
+					),
+					components.SideMenuItemTrend(
+						components.SideMenuItemTrendProps{
+							Link:       "/",
+							IsSelected: false,
+						},
+					),
+				},
+			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -215,7 +244,12 @@ func IndexPage(count int, handlePostPath string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = components.Main(count, handlePostPath).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = components.Main(
+			components.MainProps{
+				Count:          props.Count,
+				HandlePostPath: props.HandlePostPath,
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -245,7 +279,11 @@ func IndexPage(count int, handlePostPath string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = components.Footer("2024 dot96gal All Rights Reserved.").Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = components.Footer(
+			components.FooterProps{
+				Copyright: "2024 dot96gal All Rights Reserved.",
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -49,7 +49,12 @@ css indexPageFooterStyle() {
 	border-top: solid 1px rgb(0 0 0 / 20%);
 }
 
-templ IndexPage(count int, handlePostPath string) {
+type IndexPageProps struct {
+	Count int
+	HandlePostPath string
+}
+
+templ IndexPage(props IndexPageProps) {
 	<!DOCTYPE html>
 	<html>
 		<head>
@@ -61,20 +66,53 @@ templ IndexPage(count int, handlePostPath string) {
 		<body>
 			<div class={ indexPageContainerStyle() }>
 				<div class={ indexPageHeaderStyle() }>
-					@components.Header("Templ", "/")
+					@components.Header(
+						components.HeaderProps{
+							SiteText: "Templ",
+							SiteLink: "/",
+						},
+					)
 				</div>
 				<div class={ indexPageSideMenuStyle() }>
 					@components.SideMenu(
-						components.SideMenuItemHome("/", true),
-						components.SideMenuItemChart("/", false),
-						components.SideMenuItemTrend("/", false),
+						components.SideMenuProps{
+							Items: []templ.Component{
+								components.SideMenuItemHome(
+									components.SideMenuItemHomeProps{
+										Link: "/",
+										IsSelected: true,
+									},
+								),
+								components.SideMenuItemChart(
+									components.SideMenuItemChartProps{
+										Link: "/",
+										IsSelected: false,
+									},
+								),
+								components.SideMenuItemTrend(
+									components.SideMenuItemTrendProps{
+										Link: "/",
+										IsSelected: false,
+									},
+								),
+							},
+						},
 					)
 				</div>
 				<div class={ indexPageMainStyle() }>
-					@components.Main(count, handlePostPath)
+					@components.Main(
+						components.MainProps{
+							Count: props.Count,
+							HandlePostPath: props.HandlePostPath,
+						},
+					)
 				</div>
 				<div class={ indexPageFooterStyle() }>
-					@components.Footer("2024 dot96gal All Rights Reserved.")
+					@components.Footer(
+						components.FooterProps{
+							Copyright: "2024 dot96gal All Rights Reserved.",
+						},
+					)
 				</div>
 			</div>
 			<script src="/assets/js/htmx.min.js"></script>

@@ -8,12 +8,22 @@ css mainMainStyle() {
 	padding: 16px;
 }
 
-templ Main(count int, handlePostPath string) {
+type MainProps struct {
+	Count int
+	HandlePostPath string
+}
+
+templ Main(props MainProps) {
 	<main class={ mainMainStyle() } data-testid="main-component">
 		<h2>
 			index page content
 		</h2>
 		@LitCounter()
-		@SimpleCounter(count, handlePostPath)
+		@SimpleCounter(
+			SimpleCounterProps{
+				Count: props.Count,
+				HandlePostPath: props.HandlePostPath,
+			},
+		)
 	</main>
 }

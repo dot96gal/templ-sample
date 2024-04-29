@@ -32,8 +32,10 @@ css searchBoxIconStyle() {
 	height: 24px;
 }
 
+type SearchBoxProps struct {}
+
 // [TODO] ボタン押下時のアクションを追加する
-templ SearchBox() {
+templ SearchBox(props SearchBoxProps) {
 	<form class={ searchBoxFormStyle() } data-testid="search-box-component">
 		<input class={ searchBoxInputStyle() } type="search" placeholder="Search"/>
 		<button class={ searchBoxButtonStyle() }>

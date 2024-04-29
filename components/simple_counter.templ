@@ -81,11 +81,20 @@ css simpleCounterCountButtonDownStyle() {
 	grid-area: count-button-down;
 }
 
-templ SimpleCounterIndicator(count int) {
-	{ strconv.Itoa(count) }
+type SimpleCounterIndicatorProps struct {
+	Count int
 }
 
-templ SimpleCounter(count int, handlePostPath string) {
+templ SimpleCounterIndicator(props SimpleCounterIndicatorProps) {
+	{ strconv.Itoa(props.Count) }
+}
+
+type SimpleCounterProps struct {
+	Count int
+	HandlePostPath string
+}
+
+templ SimpleCounter(props SimpleCounterProps) {
 	<div
 		class={ simpleCounterCounterStyle() }
 		data-testid="simple-counter-component"
@@ -93,11 +102,15 @@ templ SimpleCounter(count int, handlePostPath string) {
 		<span
 			class={ simpleCounterCountIndicatorStyle() }
 		>
-			@SimpleCounterIndicator(count)
+			@SimpleCounterIndicator(
+				SimpleCounterIndicatorProps{
+					Count: props.Count,
+				},
+			)
 		</span>
 		<button
 			class={ simpleCounterCountButtonStyle(), simpleCounterCountButtonUpStyle() }
-			hx-post={ handlePostPath }
+			hx-post={ props.HandlePostPath }
 			hx-vals={ newSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_UP) }
 			hx-target={ fmt.Sprintf("previous .%s", simpleCounterCountIndicatorStyle().ClassName()) }
 			hx-swap="innerHTML"
@@ -106,7 +119,7 @@ templ SimpleCounter(count int, handlePostPath string) {
 		</button>
 		<button
 			class={ simpleCounterCountButtonStyle(), simpleCounterCountButtonDownStyle() }
-			hx-post={ handlePostPath }
+			hx-post={ props.HandlePostPath }
 			hx-vals={ newSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_DOWN) }
 			hx-target={ fmt.Sprintf("previous .%s", simpleCounterCountIndicatorStyle().ClassName()) }
 			hx-swap="innerHTML"

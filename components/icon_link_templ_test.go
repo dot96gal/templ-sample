@@ -14,14 +14,15 @@ func TestIconLink(t *testing.T) {
 	r, w := io.Pipe()
 
 	go func() {
-		_ = IconLink(
-			sideMenuItemHomeIcon(),
-			"home",
-			"/",
-			templ.KV(sideMenuItemSelectedStyle(), true),
-			sideMenuItemHoverStyleClass,
-			sideMenuItemHoverStyle(sideMenuItemHoverStyleClass),
-		).Render(context.Background(), w)
+		props := IconLinkProps{
+			Icon:            sideMenuItemHomeIcon(),
+			Text:            "home",
+			Link:            "/",
+			SelectedStyleKV: templ.KV(sideMenuItemSelectedStyle(), true),
+			HoverStyleClass: sideMenuItemHoverStyleClass,
+			HoverStyle:      sideMenuItemHoverStyle(sideMenuItemHoverStyleClass),
+		}
+		_ = IconLink(props).Render(context.Background(), w)
 		_ = w.Close()
 	}()
 

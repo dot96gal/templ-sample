@@ -5,8 +5,12 @@ css footerFooterStyle() {
 	font-size: 16px;
 }
 
-templ Footer(copyright string) {
+type FooterProps struct {
+	Copyright string
+}
+
+templ Footer(props FooterProps) {
 	<footer class={ footerFooterStyle() } data-testid="footer-component">
-		&copy; { copyright }
+		&copy; { props.Copyright }
 	</footer>
 }

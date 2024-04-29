@@ -48,7 +48,14 @@ func sideMenuItemHoverStyle(target string) templ.Component {
 	})
 }
 
-func SideMenuItem(icon templ.Component, targetText string, targetLink string, isSelected bool) templ.Component {
+type SideMenuItemProps struct {
+	Icon       templ.Component
+	Text       string
+	Link       string
+	IsSelected bool
+}
+
+func SideMenuItem(props SideMenuItemProps) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -62,11 +69,14 @@ func SideMenuItem(icon templ.Component, targetText string, targetLink string, is
 		}
 		ctx = templ.ClearChildren(ctx)
 		templ_7745c5c3_Err = IconLink(
-			icon,
-			targetText,
-			targetLink, templ.KV(sideMenuItemSelectedStyle(), isSelected),
-			sideMenuItemHoverStyleClass,
-			sideMenuItemHoverStyle(sideMenuItemHoverStyleClass),
+			IconLinkProps{
+				Icon:            props.Icon,
+				Text:            props.Text,
+				Link:            props.Link,
+				SelectedStyleKV: templ.KV(sideMenuItemSelectedStyle(), props.IsSelected),
+				HoverStyleClass: sideMenuItemHoverStyleClass,
+				HoverStyle:      sideMenuItemHoverStyle(sideMenuItemHoverStyleClass),
+			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -102,7 +112,12 @@ func sideMenuItemHomeIcon() templ.Component {
 	})
 }
 
-func SideMenuItemHome(targetLink string, isSelected bool) templ.Component {
+type SideMenuItemHomeProps struct {
+	Link       string
+	IsSelected bool
+}
+
+func SideMenuItemHome(props SideMenuItemHomeProps) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -115,7 +130,14 @@ func SideMenuItemHome(targetLink string, isSelected bool) templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = SideMenuItem(sideMenuItemHomeIcon(), "home", targetLink, isSelected).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = SideMenuItem(
+			SideMenuItemProps{
+				Icon:       sideMenuItemHomeIcon(),
+				Text:       "home",
+				Link:       props.Link,
+				IsSelected: props.IsSelected,
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -150,7 +172,12 @@ func sideMenuItemChartIcon() templ.Component {
 	})
 }
 
-func SideMenuItemChart(targetLink string, isSelected bool) templ.Component {
+type SideMenuItemChartProps struct {
+	Link       string
+	IsSelected bool
+}
+
+func SideMenuItemChart(props SideMenuItemChartProps) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -163,7 +190,14 @@ func SideMenuItemChart(targetLink string, isSelected bool) templ.Component {
 			templ_7745c5c3_Var6 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = SideMenuItem(sideMenuItemChartIcon(), "chart", targetLink, isSelected).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = SideMenuItem(
+			SideMenuItemProps{
+				Icon:       sideMenuItemChartIcon(),
+				Text:       "chart",
+				Link:       props.Link,
+				IsSelected: props.IsSelected,
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -198,7 +232,12 @@ func sideMenuItemTrendIcon() templ.Component {
 	})
 }
 
-func SideMenuItemTrend(targetLink string, isSelected bool) templ.Component {
+type SideMenuItemTrendProps struct {
+	Link       string
+	IsSelected bool
+}
+
+func SideMenuItemTrend(props SideMenuItemTrendProps) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -211,7 +250,14 @@ func SideMenuItemTrend(targetLink string, isSelected bool) templ.Component {
 			templ_7745c5c3_Var8 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = SideMenuItem(sideMenuItemTrendIcon(), "trend", targetLink, isSelected).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = SideMenuItem(
+			SideMenuItemProps{
+				Icon:       sideMenuItemTrendIcon(),
+				Text:       "trend",
+				Link:       props.Link,
+				IsSelected: props.IsSelected,
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

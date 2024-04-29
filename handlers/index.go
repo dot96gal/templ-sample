@@ -21,7 +21,11 @@ func NewIndexHandler(state *storage.State, handlePostPath string) IndexHandler {
 }
 
 func (h *IndexHandler) Get(w http.ResponseWriter, r *http.Request) {
-	page := pages.IndexPage(h.state.Count(), h.handlePostPath)
+	props := pages.IndexPageProps{
+		Count:          h.state.Count(),
+		HandlePostPath: h.handlePostPath,
+	}
+	page := pages.IndexPage(props)
 	err := page.Render(r.Context(), w)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -42,7 +46,10 @@ func (h *IndexHandler) Post(w http.ResponseWriter, r *http.Request) {
 		h.state.CountDown()
 	}
 
-	component := components.SimpleCounterIndicator(h.state.Count())
+	props := components.SimpleCounterIndicatorProps{
+		Count: h.state.Count(),
+	}
+	component := components.SimpleCounterIndicator(props)
 	err = component.Render(r.Context(), w)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

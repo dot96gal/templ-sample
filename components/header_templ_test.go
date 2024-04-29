@@ -13,7 +13,11 @@ func TestHeader(t *testing.T) {
 	r, w := io.Pipe()
 
 	go func() {
-		_ = Header("Templ", "/").Render(context.Background(), w)
+		props := HeaderProps{
+			SiteText: "Templ",
+			SiteLink: "/",
+		}
+		_ = Header(props).Render(context.Background(), w)
 		_ = w.Close()
 	}()
 

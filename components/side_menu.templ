@@ -14,10 +14,14 @@ css sideMenuULStyle() {
 	list-style: none;
 }
 
-templ SideMenu(items ...templ.Component) {
+type SideMenuProps struct {
+	Items []templ.Component
+}
+
+templ SideMenu(props SideMenuProps) {
 	<menu class={ sideMenuMenuStyle() } data-testid="side-menu-component">
 		<ul class={ sideMenuULStyle() }>
-			for _, item := range items {
+			for _, item := range props.Items {
 				<li>
 					@item
 				</li>

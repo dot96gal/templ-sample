@@ -12,7 +12,8 @@ func TestHeader(t *testing.T) {
 	r, w := io.Pipe()
 
 	go func() {
-		_ = IndexPage(0, "/").Render(context.Background(), w)
+		props := IndexPageProps{Count: 0, HandlePostPath: "/"}
+		_ = IndexPage(props).Render(context.Background(), w)
 		_ = w.Close()
 	}()
 

@@ -7,13 +7,21 @@ import (
 	"testing"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/a-h/templ"
 )
 
 func TestSideMenu(t *testing.T) {
 	r, w := io.Pipe()
 
 	go func() {
-		_ = SideMenu(SideMenuItemHome("/", true)).Render(context.Background(), w)
+		props := SideMenuProps{
+			Items: []templ.Component{
+				SideMenuItemHome(SideMenuItemHomeProps{Link: "/", IsSelected: true}),
+				SideMenuItemChart(SideMenuItemChartProps{Link: "/", IsSelected: false}),
+				SideMenuItemTrend(SideMenuItemTrendProps{Link: "/", IsSelected: false}),
+			},
+		}
+		_ = SideMenu(props).Render(context.Background(), w)
 		_ = w.Close()
 	}()
 

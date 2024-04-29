@@ -13,7 +13,8 @@ func TestSearchBox(t *testing.T) {
 	r, w := io.Pipe()
 
 	go func() {
-		_ = SearchBox().Render(context.Background(), w)
+		props := SearchBoxProps{}
+		_ = SearchBox(props).Render(context.Background(), w)
 		_ = w.Close()
 	}()
 

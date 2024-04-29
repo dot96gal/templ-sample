@@ -41,8 +41,17 @@ func iconLinkIconStyle() templ.CSSClass {
 	}
 }
 
+type IconLinkProps struct {
+	Icon            templ.Component
+	Text            string
+	Link            string
+	SelectedStyleKV templ.KeyValue[templ.CSSClass, bool]
+	HoverStyleClass string
+	HoverStyle      templ.Component
+}
+
 // [TODO] :hover疑似要素に対応したらリファクタリングする
-func IconLink(icon templ.Component, targetText string, targetLink string, selectedStyleKV templ.KeyValue[templ.CSSClass, bool], hoverStyleClass string, hoverStyle templ.Component) templ.Component {
+func IconLink(props IconLinkProps) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -55,11 +64,11 @@ func IconLink(icon templ.Component, targetText string, targetLink string, select
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = hoverStyle.Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = props.HoverStyle.Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var2 = []any{iconLinkLinkStyle(), selectedStyleKV, hoverStyleClass}
+		var templ_7745c5c3_Var2 = []any{iconLinkLinkStyle(), props.SelectedStyleKV, props.HoverStyleClass}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -81,7 +90,7 @@ func IconLink(icon templ.Component, targetText string, targetLink string, select
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var4 templ.SafeURL = templ.URL(targetLink)
+		var templ_7745c5c3_Var4 templ.SafeURL = templ.URL(props.Link)
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(string(templ_7745c5c3_Var4)))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -112,7 +121,7 @@ func IconLink(icon templ.Component, targetText string, targetLink string, select
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = icon.Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = props.Icon.Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -121,9 +130,9 @@ func IconLink(icon templ.Component, targetText string, targetLink string, select
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var7 string
-		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(targetText)
+		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(props.Text)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/icon_link.templ`, Line: 32, Col: 14}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/icon_link.templ`, Line: 41, Col: 14}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {
@@ -139,3 +148,5 @@ func IconLink(icon templ.Component, targetText string, targetLink string, select
 		return templ_7745c5c3_Err
 	})
 }
+
+// TODO アイコンごとのリンクを作成してリファクタリングする

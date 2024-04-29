@@ -13,7 +13,8 @@ func TestSimpleCounter(t *testing.T) {
 	r, w := io.Pipe()
 
 	go func() {
-		_ = SimpleCounter(0, "/").Render(context.Background(), w)
+		props := SimpleCounterProps{Count: 0, HandlePostPath: "/"}
+		_ = SimpleCounter(props).Render(context.Background(), w)
 		_ = w.Close()
 	}()
 

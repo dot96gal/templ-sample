@@ -12,7 +12,8 @@ func TestFooter(t *testing.T) {
 	r, w := io.Pipe()
 
 	go func() {
-		_ = Footer("2024 dot96gal All Rights Reserved.").Render(context.Background(), w)
+		props := FooterProps{Copyright: "2024 dot96gal All Rights Reserved."}
+		_ = Footer(props).Render(context.Background(), w)
 		_ = w.Close()
 	}()
 
