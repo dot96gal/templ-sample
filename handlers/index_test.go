@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"bytes"
 	"net/http"
 	"net/http/httptest"
+	"net/url"
 	"strings"
 	"testing"
 
@@ -37,15 +37,17 @@ func TestIndexHandler_Post(t *testing.T) {
 	handlePostPath := "/"
 	indexHandler := NewIndexHandler(state, handlePostPath)
 
+	form := url.Values{}
+	form.Add(components.SIMPLE_COUNTER_OPERATION_KEY, string(components.SIMPLE_COUNTER_OPERATION_UP))
+	body := strings.NewReader(form.Encode())
+
 	w := httptest.NewRecorder()
 	r := httptest.NewRequest(
 		http.MethodPost,
 		"/",
-		bytes.NewBuffer(
-			[]byte(
-				components.NewSimpleCounterRequestJSON(components.SIMPLE_COUNTER_OPERATION_UP)),
-		),
+		body,
 	)
+	r.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	indexHandler.Post(w, r)
 
@@ -54,7 +56,7 @@ func TestIndexHandler_Post(t *testing.T) {
 		t.Fatalf("failed to read template: %v", err)
 	}
 
-	expected := "1"
+	expected := "2"
 	if actual := doc.Text(); actual != expected {
 		t.Errorf("expected %q, got %q", expected, actual)
 	}

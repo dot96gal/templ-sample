@@ -39,6 +39,19 @@ func ParseSimpleCounterRequest(values url.Values) SimpleCounterRequest {
 	}
 }
 
+func NewSimpleCounterRequestJSON2(operation SimpleCounterOperation) []byte {
+	r := SimpleCounterRequest{
+		Operation: operation,
+	}
+
+	b, err := json.Marshal(r)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return b
+}
+
 func NewSimpleCounterRequestJSON(operation SimpleCounterOperation) string {
 	r := SimpleCounterRequest{
 		Operation: operation,
@@ -142,7 +155,7 @@ func SimpleCounterIndicator(props SimpleCounterIndicatorProps) templ.Component {
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.Itoa(props.Count))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/simple_counter.templ`, Line: 89, Col: 28}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/simple_counter.templ`, Line: 102, Col: 28}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
@@ -263,7 +276,7 @@ func SimpleCounter(props SimpleCounterProps) templ.Component {
 		var templ_7745c5c3_Var10 string
 		templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(props.HandlePostPath)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/simple_counter.templ`, Line: 114, Col: 33}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/simple_counter.templ`, Line: 127, Col: 33}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 		if templ_7745c5c3_Err != nil {
@@ -276,7 +289,7 @@ func SimpleCounter(props SimpleCounterProps) templ.Component {
 		var templ_7745c5c3_Var11 string
 		templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(NewSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_UP))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/simple_counter.templ`, Line: 115, Col: 69}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/simple_counter.templ`, Line: 128, Col: 69}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 		if templ_7745c5c3_Err != nil {
@@ -289,7 +302,7 @@ func SimpleCounter(props SimpleCounterProps) templ.Component {
 		var templ_7745c5c3_Var12 string
 		templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("previous .%s", simpleCounterCountIndicatorStyle().ClassName()))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/simple_counter.templ`, Line: 116, Col: 90}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/simple_counter.templ`, Line: 129, Col: 90}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 		if templ_7745c5c3_Err != nil {
@@ -324,7 +337,7 @@ func SimpleCounter(props SimpleCounterProps) templ.Component {
 		var templ_7745c5c3_Var15 string
 		templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinStringErrs(props.HandlePostPath)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/simple_counter.templ`, Line: 123, Col: 33}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/simple_counter.templ`, Line: 136, Col: 33}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
 		if templ_7745c5c3_Err != nil {
@@ -337,7 +350,7 @@ func SimpleCounter(props SimpleCounterProps) templ.Component {
 		var templ_7745c5c3_Var16 string
 		templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(NewSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_DOWN))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/simple_counter.templ`, Line: 124, Col: 71}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/simple_counter.templ`, Line: 137, Col: 71}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
 		if templ_7745c5c3_Err != nil {
@@ -350,7 +363,7 @@ func SimpleCounter(props SimpleCounterProps) templ.Component {
 		var templ_7745c5c3_Var17 string
 		templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("previous .%s", simpleCounterCountIndicatorStyle().ClassName()))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/simple_counter.templ`, Line: 125, Col: 90}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/simple_counter.templ`, Line: 138, Col: 90}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var17))
 		if templ_7745c5c3_Err != nil {

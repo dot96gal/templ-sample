@@ -28,6 +28,19 @@ func ParseSimpleCounterRequest(values url.Values) SimpleCounterRequest {
 	}
 }
 
+func NewSimpleCounterRequestJSON2(operation SimpleCounterOperation) []byte {
+	r := SimpleCounterRequest{
+		Operation: operation,
+	}
+
+	b, err := json.Marshal(r)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return b
+}
+
 func NewSimpleCounterRequestJSON(operation SimpleCounterOperation) string {
 	r := SimpleCounterRequest{
 		Operation: operation,
