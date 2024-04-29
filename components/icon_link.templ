@@ -8,14 +8,9 @@ css iconLinkLinkStyle() {
 	align-items: center;
 	width: 100%;
 	text-align: left;
-	padding: 8px 12px;
+	padding: 16px;
 	border-radius: 8px;
 	color: inherit;
-}
-
-css iconLinkIconStyle() {
-	width: 24px;
-	height: 24px;
 }
 
 type IconLinkProps struct {
@@ -36,9 +31,7 @@ templ IconLink(props IconLinkProps) {
 		href={ templ.URL(props.Link) }
 		{ props.Attributes... }
 	>
-		<div class={ iconLinkIconStyle() }>
-			@props.Icon
-		</div>
+		@props.Icon
 		{ props.Text }
 	</a>
 }
