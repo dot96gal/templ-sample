@@ -93,7 +93,7 @@ type SimpleCounterButtonProps struct {
 	HandlePostPath string
 }
 
-templ SimpleCounterCountButtonUp(props SimpleCounterButtonProps) {
+templ SimpleCounterButtonUp(props SimpleCounterButtonProps) {
 	<button
 		class={ simpleCounterCountButtonStyle(), simpleCounterCountButtonUpStyle() }
 		hx-post={ props.HandlePostPath }
@@ -105,7 +105,7 @@ templ SimpleCounterCountButtonUp(props SimpleCounterButtonProps) {
 	</button>
 }
 
-templ SimpleCounterCountButtonDown(props SimpleCounterButtonProps) {
+templ SimpleCounterButtonDown(props SimpleCounterButtonProps) {
 	<button
 		class={ simpleCounterCountButtonStyle(), simpleCounterCountButtonDownStyle() }
 		hx-post={ props.HandlePostPath }
@@ -137,12 +137,12 @@ templ SimpleCounter(props SimpleCounterProps) {
 				},
 			)
 		</div>
-		@SimpleCounterCountButtonUp(
+		@SimpleCounterButtonUp(
 			SimpleCounterButtonProps{
 				HandlePostPath: props.HandlePostPath,
 			},
 		)
-		@SimpleCounterCountButtonDown(
+		@SimpleCounterButtonDown(
 			SimpleCounterButtonProps{
 				HandlePostPath: props.HandlePostPath,
 			},

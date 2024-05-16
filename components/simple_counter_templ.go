@@ -159,7 +159,7 @@ type SimpleCounterButtonProps struct {
 	HandlePostPath string
 }
 
-func SimpleCounterCountButtonUp(props SimpleCounterButtonProps) templ.Component {
+func SimpleCounterButtonUp(props SimpleCounterButtonProps) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -240,7 +240,7 @@ func SimpleCounterCountButtonUp(props SimpleCounterButtonProps) templ.Component 
 	})
 }
 
-func SimpleCounterCountButtonDown(props SimpleCounterButtonProps) templ.Component {
+func SimpleCounterButtonDown(props SimpleCounterButtonProps) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -404,7 +404,7 @@ func SimpleCounter(props SimpleCounterProps) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = SimpleCounterCountButtonUp(
+		templ_7745c5c3_Err = SimpleCounterButtonUp(
 			SimpleCounterButtonProps{
 				HandlePostPath: props.HandlePostPath,
 			},
@@ -412,7 +412,7 @@ func SimpleCounter(props SimpleCounterProps) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = SimpleCounterCountButtonDown(
+		templ_7745c5c3_Err = SimpleCounterButtonDown(
 			SimpleCounterButtonProps{
 				HandlePostPath: props.HandlePostPath,
 			},
