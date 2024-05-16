@@ -89,6 +89,34 @@ templ SimpleCounterIndicator(props SimpleCounterIndicatorProps) {
 	{ strconv.Itoa(props.Count) }
 }
 
+type SimpleCounterButtonProps struct {
+	HandlePostPath string
+}
+
+templ SimpleCounterCountButtonUp(props SimpleCounterButtonProps) {
+	<button
+		class={ simpleCounterCountButtonStyle(), simpleCounterCountButtonUpStyle() }
+		hx-post={ props.HandlePostPath }
+		hx-vals={ NewSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_UP) }
+		hx-target={ fmt.Sprintf("previous .%s", simpleCounterCountIndicatorStyle().ClassName()) }
+		hx-swap="innerHTML"
+	>
+		Count Up
+	</button>
+}
+
+templ SimpleCounterCountButtonDown(props SimpleCounterButtonProps) {
+	<button
+		class={ simpleCounterCountButtonStyle(), simpleCounterCountButtonDownStyle() }
+		hx-post={ props.HandlePostPath }
+		hx-vals={ NewSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_DOWN) }
+		hx-target={ fmt.Sprintf("previous .%s", simpleCounterCountIndicatorStyle().ClassName()) }
+		hx-swap="innerHTML"
+	>
+		Count Down
+	</button>
+}
+
 type SimpleCounterProps struct {
 	Count          int
 	HandlePostPath string
@@ -100,7 +128,7 @@ templ SimpleCounter(props SimpleCounterProps) {
 		class={ simpleCounterCounterStyle() }
 		{ props.Attributes... }
 	>
-		<span
+		<div
 			class={ simpleCounterCountIndicatorStyle() }
 		>
 			@SimpleCounterIndicator(
@@ -108,24 +136,16 @@ templ SimpleCounter(props SimpleCounterProps) {
 					Count: props.Count,
 				},
 			)
-		</span>
-		<button
-			class={ simpleCounterCountButtonStyle(), simpleCounterCountButtonUpStyle() }
-			hx-post={ props.HandlePostPath }
-			hx-vals={ NewSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_UP) }
-			hx-target={ fmt.Sprintf("previous .%s", simpleCounterCountIndicatorStyle().ClassName()) }
-			hx-swap="innerHTML"
-		>
-			Count Up
-		</button>
-		<button
-			class={ simpleCounterCountButtonStyle(), simpleCounterCountButtonDownStyle() }
-			hx-post={ props.HandlePostPath }
-			hx-vals={ NewSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_DOWN) }
-			hx-target={ fmt.Sprintf("previous .%s", simpleCounterCountIndicatorStyle().ClassName()) }
-			hx-swap="innerHTML"
-		>
-			Count Down
-		</button>
+		</div>
+		@SimpleCounterCountButtonUp(
+			SimpleCounterButtonProps{
+				HandlePostPath: props.HandlePostPath,
+			},
+		)
+		@SimpleCounterCountButtonDown(
+			SimpleCounterButtonProps{
+				HandlePostPath: props.HandlePostPath,
+			},
+		)
 	</div>
 }
