@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -21,10 +20,8 @@ func main() {
 	mux.Handle("GET /assets/", http.StripPrefix("/assets", fs))
 
 	state := storage.NewState()
-	handlePostPath := "/"
-	indexHandler := handlers.NewIndexHandler(state, handlePostPath)
-	mux.HandleFunc("GET /", indexHandler.Get)
-	mux.HandleFunc(fmt.Sprintf("POST %s", handlePostPath), indexHandler.Post)
+	indexHandler := handlers.NewIndexHandler("/", state)
+	mux.Handle(indexHandler.Pattern(), &indexHandler)
 
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGTERM, os.Interrupt, os.Kill)
 	defer stop()
