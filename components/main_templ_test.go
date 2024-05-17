@@ -18,9 +18,9 @@ func TestMain(t *testing.T) {
 
 	go func() {
 		props := MainProps{
-			Count:          0,
-			HandlePostPath: "/",
-			Attributes:     templ.Attributes{"data-testid": dataTestid},
+			Count:                 0,
+			EndpointSimpleCounter: "/",
+			Attributes:            templ.Attributes{"data-testid": dataTestid},
 		}
 		_ = Main(props).Render(context.Background(), w)
 		_ = w.Close()

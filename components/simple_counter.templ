@@ -90,37 +90,32 @@ templ SimpleCounterIndicator(props SimpleCounterIndicatorProps) {
 }
 
 type SimpleCounterButtonProps struct {
-	HandlePostPath string
+	CSSClasses  templ.CSSClasses
+	HxPost      string
+	HxVals      string
+	HxTarget    string
+	HxSwap      string
+	DisplayName string
 }
 
-templ SimpleCounterButtonUp(props SimpleCounterButtonProps) {
+templ SimpleCounterButton(
+	props SimpleCounterButtonProps,
+) {
 	<button
-		class={ simpleCounterCountButtonStyle(), simpleCounterCountButtonUpStyle() }
-		hx-post={ props.HandlePostPath }
-		hx-vals={ NewSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_UP) }
-		hx-target={ fmt.Sprintf("previous .%s", simpleCounterCountIndicatorStyle().ClassName()) }
-		hx-swap="innerHTML"
+		class={ props.CSSClasses }
+		hx-post={ props.HxPost }
+		hx-vals={ props.HxVals }
+		hx-target={ props.HxTarget }
+		hx-swap={ props.HxSwap }
 	>
-		Count Up
-	</button>
-}
-
-templ SimpleCounterButtonDown(props SimpleCounterButtonProps) {
-	<button
-		class={ simpleCounterCountButtonStyle(), simpleCounterCountButtonDownStyle() }
-		hx-post={ props.HandlePostPath }
-		hx-vals={ NewSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_DOWN) }
-		hx-target={ fmt.Sprintf("previous .%s", simpleCounterCountIndicatorStyle().ClassName()) }
-		hx-swap="innerHTML"
-	>
-		Count Down
+		{ props.DisplayName }
 	</button>
 }
 
 type SimpleCounterProps struct {
-	Count          int
-	HandlePostPath string
-	Attributes     templ.Attributes
+	Count      int
+	Endpoint   string
+	Attributes templ.Attributes
 }
 
 templ SimpleCounter(props SimpleCounterProps) {
@@ -137,14 +132,24 @@ templ SimpleCounter(props SimpleCounterProps) {
 				},
 			)
 		</div>
-		@SimpleCounterButtonUp(
+		@SimpleCounterButton(
 			SimpleCounterButtonProps{
-				HandlePostPath: props.HandlePostPath,
+				CSSClasses:  templ.CSSClasses{simpleCounterCountButtonStyle(), simpleCounterCountButtonUpStyle()},
+				HxPost:      props.Endpoint,
+				HxVals:      NewSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_UP),
+				HxTarget:    fmt.Sprintf("previous .%s", simpleCounterCountIndicatorStyle().ClassName()),
+				HxSwap:      "innerHTML",
+				DisplayName: "Count Up",
 			},
 		)
-		@SimpleCounterButtonDown(
+		@SimpleCounterButton(
 			SimpleCounterButtonProps{
-				HandlePostPath: props.HandlePostPath,
+				CSSClasses:  templ.CSSClasses{simpleCounterCountButtonStyle(), simpleCounterCountButtonDownStyle()},
+				HxPost:      props.Endpoint,
+				HxVals:      NewSimpleCounterRequestJSON(SIMPLE_COUNTER_OPERATION_DOWN),
+				HxTarget:    fmt.Sprintf("previous .%s", simpleCounterCountIndicatorStyle().ClassName()),
+				HxSwap:      "innerHTML",
+				DisplayName: "Count Down",
 			},
 		)
 	</div>

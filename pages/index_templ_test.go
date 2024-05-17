@@ -20,8 +20,8 @@ func TestHeader(t *testing.T) {
 
 	go func() {
 		props := IndexPageProps{
-			Count:          0,
-			HandlePostPath: "/",
+			Count:                 0,
+			EndpointSimpleCounter: "/",
 			Attributes: templ.Attributes{
 				"data-testid-header":    dataTestidHeader,
 				"data-testid-side-menu": dataTestidSideMenu,

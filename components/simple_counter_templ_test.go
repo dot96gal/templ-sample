@@ -18,9 +18,9 @@ func TestSimpleCounter(t *testing.T) {
 
 	go func() {
 		props := SimpleCounterProps{
-			Count:          0,
-			HandlePostPath: "/",
-			Attributes:     templ.Attributes{"data-testid": dataTestid},
+			Count:      0,
+			Endpoint:   "/",
+			Attributes: templ.Attributes{"data-testid": dataTestid},
 		}
 		_ = SimpleCounter(props).Render(context.Background(), w)
 		_ = w.Close()

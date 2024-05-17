@@ -9,9 +9,9 @@ css mainMainStyle() {
 }
 
 type MainProps struct {
-	Count          int
-	HandlePostPath string
-	Attributes     templ.Attributes
+	Count                 int
+	EndpointSimpleCounter string
+	Attributes            templ.Attributes
 }
 
 templ Main(props MainProps) {
@@ -24,8 +24,8 @@ templ Main(props MainProps) {
 		</h2>
 		@SimpleCounter(
 			SimpleCounterProps{
-				Count:          props.Count,
-				HandlePostPath: props.HandlePostPath,
+				Count:    props.Count,
+				Endpoint: props.EndpointSimpleCounter,
 			},
 		)
 	</main>

@@ -26,9 +26,9 @@ func mainMainStyle() templ.CSSClass {
 }
 
 type MainProps struct {
-	Count          int
-	HandlePostPath string
-	Attributes     templ.Attributes
+	Count                 int
+	EndpointSimpleCounter string
+	Attributes            templ.Attributes
 }
 
 func Main(props MainProps) templ.Component {
@@ -76,8 +76,8 @@ func Main(props MainProps) templ.Component {
 		}
 		templ_7745c5c3_Err = SimpleCounter(
 			SimpleCounterProps{
-				Count:          props.Count,
-				HandlePostPath: props.HandlePostPath,
+				Count:    props.Count,
+				Endpoint: props.EndpointSimpleCounter,
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {

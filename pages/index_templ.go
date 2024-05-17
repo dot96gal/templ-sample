@@ -83,9 +83,9 @@ func indexPageFooterStyle() templ.CSSClass {
 }
 
 type IndexPageProps struct {
-	Count          int
-	HandlePostPath string
-	Attributes     templ.Attributes
+	Count                 int
+	EndpointSimpleCounter string
+	Attributes            templ.Attributes
 }
 
 func IndexPage(props IndexPageProps) templ.Component {
@@ -245,8 +245,8 @@ func IndexPage(props IndexPageProps) templ.Component {
 		}
 		templ_7745c5c3_Err = components.Main(
 			components.MainProps{
-				Count:          props.Count,
-				HandlePostPath: props.HandlePostPath,
+				Count:                 props.Count,
+				EndpointSimpleCounter: props.EndpointSimpleCounter,
 				Attributes: templ.Attributes{
 					"data-testid": props.Attributes["data-testid-main"],
 				},

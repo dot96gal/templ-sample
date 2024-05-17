@@ -42,9 +42,9 @@ css indexPageFooterStyle() {
 }
 
 type IndexPageProps struct {
-	Count          int
-	HandlePostPath string
-	Attributes     templ.Attributes
+	Count                 int
+	EndpointSimpleCounter string
+	Attributes            templ.Attributes
 }
 
 templ IndexPage(props IndexPageProps) {
@@ -101,8 +101,8 @@ templ IndexPage(props IndexPageProps) {
 				<div class={ indexPageMainStyle() }>
 					@components.Main(
 						components.MainProps{
-							Count:          props.Count,
-							HandlePostPath: props.HandlePostPath,
+							Count:                 props.Count,
+							EndpointSimpleCounter: props.EndpointSimpleCounter,
 							Attributes: templ.Attributes{
 								"data-testid": props.Attributes["data-testid-main"],
 							},

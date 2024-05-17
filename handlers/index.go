@@ -40,9 +40,10 @@ func (h *IndexHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 func (h *IndexHandler) handleGet(w http.ResponseWriter, r *http.Request) {
 	props := pages.IndexPageProps{
-		Count:          h.state.Count(),
-		HandlePostPath: h.path,
+		Count:                 h.state.Count(),
+		EndpointSimpleCounter: h.path,
 	}
+
 	page := pages.IndexPage(props)
 	err := page.Render(r.Context(), w)
 	if err != nil {
@@ -67,6 +68,7 @@ func (h *IndexHandler) handlePost(w http.ResponseWriter, r *http.Request) {
 	props := components.SimpleCounterIndicatorProps{
 		Count: h.state.Count(),
 	}
+
 	component := components.SimpleCounterIndicator(props)
 	err = component.Render(r.Context(), w)
 	if err != nil {
