@@ -12,7 +12,7 @@ import (
 	"github.com/dot96gal/templ-sample/storage"
 )
 
-func TestIndexHandler_ServeHTTP_handleGet(t *testing.T) {
+func TestIndexHandler_ServeHTTP_getIndexPage(t *testing.T) {
 	path := "/"
 	state := storage.NewState()
 	indexHandler := NewIndexHandler(path, state)
@@ -25,14 +25,13 @@ func TestIndexHandler_ServeHTTP_handleGet(t *testing.T) {
 	if err != nil {
 		t.Fatalf("failed to read template: %v", err)
 	}
-
 	expected := "index page content"
 	if actual := doc.Text(); !strings.Contains(actual, expected) {
 		t.Errorf("expected %q, got %q", expected, actual)
 	}
 }
 
-func TestIndexHandler_ServeHTTP_handlePost_CountUp(t *testing.T) {
+func TestIndexHandler_ServeHTTP_postSimpleCounter_CountUp(t *testing.T) {
 	path := "/"
 	state := storage.NewState()
 	indexHandler := NewIndexHandler(path, state)
@@ -62,7 +61,7 @@ func TestIndexHandler_ServeHTTP_handlePost_CountUp(t *testing.T) {
 	}
 }
 
-func TestIndexHandler_ServeHTTP_handlePost_CountDown(t *testing.T) {
+func TestIndexHandler_ServeHTTP_postSimpleCounter_CountDown(t *testing.T) {
 	path := "/"
 	state := storage.NewState()
 	indexHandler := NewIndexHandler(path, state)

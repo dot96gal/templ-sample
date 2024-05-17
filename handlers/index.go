@@ -24,8 +24,8 @@ func NewIndexHandler(path string, state *storage.State) IndexHandler {
 		state: state,
 	}
 
-	mux.HandleFunc(fmt.Sprintf("GET %s", h.path), h.handleGet)
-	mux.HandleFunc(fmt.Sprintf("POST %s", h.path), h.handlePost)
+	mux.HandleFunc(fmt.Sprintf("GET %s", h.path), h.getIndexPage)
+	mux.HandleFunc(fmt.Sprintf("POST %s", h.path), h.postSimpleCounter)
 
 	return h
 }
@@ -38,7 +38,7 @@ func (h *IndexHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	h.mux.ServeHTTP(w, r)
 }
 
-func (h *IndexHandler) handleGet(w http.ResponseWriter, r *http.Request) {
+func (h *IndexHandler) getIndexPage(w http.ResponseWriter, r *http.Request) {
 	props := pages.IndexPageProps{
 		Count:                 h.state.Count(),
 		EndpointSimpleCounter: h.path,
@@ -51,7 +51,7 @@ func (h *IndexHandler) handleGet(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (h *IndexHandler) handlePost(w http.ResponseWriter, r *http.Request) {
+func (h *IndexHandler) postSimpleCounter(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
