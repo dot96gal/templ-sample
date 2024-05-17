@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"io"
-	"strings"
 	"testing"
 
 	"github.com/PuerkitoBio/goquery"
@@ -36,8 +35,8 @@ func TestSimpleCounter(t *testing.T) {
 		t.Error("expected data-testid attribute to be rendered, but it wasn't")
 	}
 
-	expected := ""
-	if actual := component.Text(); !strings.Contains(actual, expected) {
+	expected := "0"
+	if actual := doc.Find(`[class^="simpleCounterCountIndicatorStyle"]`).Text(); actual != expected {
 		t.Errorf("expected %q, got %q", expected, actual)
 	}
 }

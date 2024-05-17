@@ -56,7 +56,7 @@ func TestIndexHandler_ServeHTTP_postSimpleCounter_CountUp(t *testing.T) {
 	}
 
 	expected := "2"
-	if actual := doc.Text(); actual != expected {
+	if actual := doc.Find(`[class^="simpleCounterCountIndicatorStyle"]`).Text(); actual != expected {
 		t.Errorf("expected %q, got %q", expected, actual)
 	}
 }
@@ -86,7 +86,7 @@ func TestIndexHandler_ServeHTTP_postSimpleCounter_CountDown(t *testing.T) {
 	}
 
 	expected := "0"
-	if actual := doc.Text(); actual != expected {
+	if actual := doc.Find(`[class^="simpleCounterCountIndicatorStyle"]`).Text(); actual != expected {
 		t.Errorf("expected %q, got %q", expected, actual)
 	}
 }

@@ -86,7 +86,9 @@ type SimpleCounterIndicatorProps struct {
 }
 
 templ SimpleCounterIndicator(props SimpleCounterIndicatorProps) {
-	{ strconv.Itoa(props.Count) }
+	<div class={ simpleCounterCountIndicatorStyle() }>
+		{ strconv.Itoa(props.Count) }
+	</div>
 }
 
 type SimpleCounterButtonProps struct {
@@ -123,15 +125,11 @@ templ SimpleCounter(props SimpleCounterProps) {
 		class={ simpleCounterCounterStyle() }
 		{ props.Attributes... }
 	>
-		<div
-			class={ simpleCounterCountIndicatorStyle() }
-		>
-			@SimpleCounterIndicator(
-				SimpleCounterIndicatorProps{
-					Count: props.Count,
-				},
-			)
-		</div>
+		@SimpleCounterIndicator(
+			SimpleCounterIndicatorProps{
+				Count: props.Count,
+			},
+		)
 		@SimpleCounterButton(
 			SimpleCounterButtonProps{
 				CSSClasses:  templ.CSSClasses{simpleCounterCountButtonStyle(), simpleCounterCountButtonUpStyle()},
