@@ -12,7 +12,7 @@ import (
 	"github.com/dot96gal/templ-sample/storage"
 )
 
-func TestIndexHandler_ServeHTTP_getIndexPage(t *testing.T) {
+func TestIndexHandler_GetIndexPage(t *testing.T) {
 	path := "/"
 	state := storage.NewState()
 	indexHandler := NewIndexHandler(path, state)
@@ -20,7 +20,8 @@ func TestIndexHandler_ServeHTTP_getIndexPage(t *testing.T) {
 	w := httptest.NewRecorder()
 	r := httptest.NewRequest(http.MethodGet, "/", nil)
 
-	indexHandler.ServeHTTP(w, r)
+	indexHandler.GetIndexPage(w, r)
+
 	doc, err := goquery.NewDocumentFromReader(w.Result().Body)
 	if err != nil {
 		t.Fatalf("failed to read template: %v", err)
@@ -31,7 +32,7 @@ func TestIndexHandler_ServeHTTP_getIndexPage(t *testing.T) {
 	}
 }
 
-func TestIndexHandler_ServeHTTP_postSimpleCounter_CountUp(t *testing.T) {
+func TestIndexHandler_PostSimpleCounter_CountUp(t *testing.T) {
 	path := "/"
 	state := storage.NewState()
 	indexHandler := NewIndexHandler(path, state)
@@ -48,7 +49,7 @@ func TestIndexHandler_ServeHTTP_postSimpleCounter_CountUp(t *testing.T) {
 	)
 	r.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
-	indexHandler.ServeHTTP(w, r)
+	indexHandler.PostSimpleCounter(w, r)
 
 	doc, err := goquery.NewDocumentFromReader(w.Result().Body)
 	if err != nil {
@@ -61,7 +62,7 @@ func TestIndexHandler_ServeHTTP_postSimpleCounter_CountUp(t *testing.T) {
 	}
 }
 
-func TestIndexHandler_ServeHTTP_postSimpleCounter_CountDown(t *testing.T) {
+func TestIndexHandler_PostSimpleCounter_CountDown(t *testing.T) {
 	path := "/"
 	state := storage.NewState()
 	indexHandler := NewIndexHandler(path, state)
@@ -78,7 +79,7 @@ func TestIndexHandler_ServeHTTP_postSimpleCounter_CountDown(t *testing.T) {
 	)
 	r.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
-	indexHandler.ServeHTTP(w, r)
+	indexHandler.PostSimpleCounter(w, r)
 
 	doc, err := goquery.NewDocumentFromReader(w.Result().Body)
 	if err != nil {

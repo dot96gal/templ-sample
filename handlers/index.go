@@ -10,35 +10,23 @@ import (
 )
 
 type IndexHandler struct {
-	mux   *http.ServeMux
 	path  string
 	state *storage.State
 }
 
 func NewIndexHandler(path string, state *storage.State) IndexHandler {
-	mux := http.NewServeMux()
-
-	h := IndexHandler{
-		mux:   mux,
+	return IndexHandler{
 		path:  path,
 		state: state,
 	}
-
-	mux.HandleFunc(fmt.Sprintf("GET %s", h.path), h.getIndexPage)
-	mux.HandleFunc(fmt.Sprintf("POST %s", h.path), h.postSimpleCounter)
-
-	return h
 }
 
-func (h *IndexHandler) Pattern() string {
-	return h.path
+func (h *IndexHandler) Register(mux *http.ServeMux) {
+	mux.HandleFunc(fmt.Sprintf("GET %s", h.path), h.GetIndexPage)
+	mux.HandleFunc(fmt.Sprintf("POST %s", h.path), h.PostSimpleCounter)
 }
 
-func (h *IndexHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	h.mux.ServeHTTP(w, r)
-}
-
-func (h *IndexHandler) getIndexPage(w http.ResponseWriter, r *http.Request) {
+func (h *IndexHandler) GetIndexPage(w http.ResponseWriter, r *http.Request) {
 	props := pages.IndexPageProps{
 		Count:                 h.state.Count(),
 		EndpointSimpleCounter: h.path,
@@ -51,7 +39,7 @@ func (h *IndexHandler) getIndexPage(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (h *IndexHandler) postSimpleCounter(w http.ResponseWriter, r *http.Request) {
+func (h *IndexHandler) PostSimpleCounter(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

@@ -21,7 +21,7 @@ func main() {
 
 	state := storage.NewState()
 	indexHandler := handlers.NewIndexHandler("/", state)
-	mux.Handle(indexHandler.Pattern(), &indexHandler)
+	indexHandler.Register(mux)
 
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGTERM, os.Interrupt, os.Kill)
 	defer stop()
