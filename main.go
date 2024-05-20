@@ -9,7 +9,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/dot96gal/templ-sample/handlers"
+	"github.com/dot96gal/templ-sample/controllers"
 	"github.com/dot96gal/templ-sample/storage"
 )
 
@@ -20,8 +20,8 @@ func main() {
 	mux.Handle("GET /assets/", http.StripPrefix("/assets", fs))
 
 	state := storage.NewState()
-	indexHandler := handlers.NewIndexHandler("/", state)
-	indexHandler.Register(mux)
+	indexController := controllers.NewIndexController("/", state)
+	indexController.Register(mux)
 
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGTERM, os.Interrupt, os.Kill)
 	defer stop()

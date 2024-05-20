@@ -1,4 +1,4 @@
-package handlers
+package controllers
 
 import (
 	"net/http"
@@ -12,15 +12,15 @@ import (
 	"github.com/dot96gal/templ-sample/storage"
 )
 
-func TestIndexHandler_GetIndexPage(t *testing.T) {
+func TestIndexController_GetIndexPage(t *testing.T) {
 	path := "/"
 	state := storage.NewState()
-	indexHandler := NewIndexHandler(path, state)
+	controller := NewIndexController(path, state)
 
 	w := httptest.NewRecorder()
 	r := httptest.NewRequest(http.MethodGet, "/", nil)
 
-	indexHandler.GetIndexPage(w, r)
+	controller.GetIndexPage(w, r)
 
 	doc, err := goquery.NewDocumentFromReader(w.Result().Body)
 	if err != nil {
@@ -32,10 +32,10 @@ func TestIndexHandler_GetIndexPage(t *testing.T) {
 	}
 }
 
-func TestIndexHandler_PostSimpleCounter_CountUp(t *testing.T) {
+func TestIndexController_PostSimpleCounter_CountUp(t *testing.T) {
 	path := "/"
 	state := storage.NewState()
-	indexHandler := NewIndexHandler(path, state)
+	controller := NewIndexController(path, state)
 
 	form := url.Values{}
 	form.Add(components.SIMPLE_COUNTER_OPERATION_KEY, string(components.SIMPLE_COUNTER_OPERATION_UP))
@@ -49,7 +49,7 @@ func TestIndexHandler_PostSimpleCounter_CountUp(t *testing.T) {
 	)
 	r.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
-	indexHandler.PostSimpleCounter(w, r)
+	controller.PostSimpleCounter(w, r)
 
 	doc, err := goquery.NewDocumentFromReader(w.Result().Body)
 	if err != nil {
@@ -62,10 +62,10 @@ func TestIndexHandler_PostSimpleCounter_CountUp(t *testing.T) {
 	}
 }
 
-func TestIndexHandler_PostSimpleCounter_CountDown(t *testing.T) {
+func TestIndexController_PostSimpleCounter_CountDown(t *testing.T) {
 	path := "/"
 	state := storage.NewState()
-	indexHandler := NewIndexHandler(path, state)
+	controller := NewIndexController(path, state)
 
 	form := url.Values{}
 	form.Add(components.SIMPLE_COUNTER_OPERATION_KEY, string(components.SIMPLE_COUNTER_OPERATION_DOWN))
@@ -79,7 +79,7 @@ func TestIndexHandler_PostSimpleCounter_CountDown(t *testing.T) {
 	)
 	r.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
-	indexHandler.PostSimpleCounter(w, r)
+	controller.PostSimpleCounter(w, r)
 
 	doc, err := goquery.NewDocumentFromReader(w.Result().Body)
 	if err != nil {

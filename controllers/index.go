@@ -1,4 +1,4 @@
-package handlers
+package controllers
 
 import (
 	"fmt"
@@ -9,27 +9,27 @@ import (
 	"github.com/dot96gal/templ-sample/storage"
 )
 
-type IndexHandler struct {
+type IndexController struct {
 	path  string
 	state *storage.State
 }
 
-func NewIndexHandler(path string, state *storage.State) IndexHandler {
-	return IndexHandler{
+func NewIndexController(path string, state *storage.State) IndexController {
+	return IndexController{
 		path:  path,
 		state: state,
 	}
 }
 
-func (h *IndexHandler) Register(mux *http.ServeMux) {
-	mux.HandleFunc(fmt.Sprintf("GET %s", h.path), h.GetIndexPage)
-	mux.HandleFunc(fmt.Sprintf("POST %s", h.path), h.PostSimpleCounter)
+func (c *IndexController) Register(mux *http.ServeMux) {
+	mux.HandleFunc(fmt.Sprintf("GET %s", c.path), c.GetIndexPage)
+	mux.HandleFunc(fmt.Sprintf("POST %s", c.path), c.PostSimpleCounter)
 }
 
-func (h *IndexHandler) GetIndexPage(w http.ResponseWriter, r *http.Request) {
+func (c *IndexController) GetIndexPage(w http.ResponseWriter, r *http.Request) {
 	props := pages.IndexPageProps{
-		Count:                 h.state.Count(),
-		EndpointSimpleCounter: h.path,
+		Count:                 c.state.Count(),
+		EndpointSimpleCounter: c.path,
 	}
 
 	page := pages.IndexPage(props)
@@ -39,7 +39,7 @@ func (h *IndexHandler) GetIndexPage(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (h *IndexHandler) PostSimpleCounter(w http.ResponseWriter, r *http.Request) {
+func (c *IndexController) PostSimpleCounter(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -48,13 +48,13 @@ func (h *IndexHandler) PostSimpleCounter(w http.ResponseWriter, r *http.Request)
 	req := components.ParseSimpleCounterRequest(r.PostForm)
 	switch req.Operation {
 	case components.SIMPLE_COUNTER_OPERATION_UP:
-		h.state.CountUp()
+		c.state.CountUp()
 	case components.SIMPLE_COUNTER_OPERATION_DOWN:
-		h.state.CountDown()
+		c.state.CountDown()
 	}
 
 	props := components.SimpleCounterIndicatorProps{
-		Count: h.state.Count(),
+		Count: c.state.Count(),
 	}
 
 	component := components.SimpleCounterIndicator(props)
