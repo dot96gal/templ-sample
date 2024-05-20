@@ -18,7 +18,7 @@ func TestIndexController_GetIndexPage(t *testing.T) {
 	controller := NewIndexController(path, state)
 
 	w := httptest.NewRecorder()
-	r := httptest.NewRequest(http.MethodGet, "/", nil)
+	r := httptest.NewRequest(http.MethodGet, path, nil)
 
 	controller.GetIndexPage(w, r)
 
@@ -42,11 +42,7 @@ func TestIndexController_PostSimpleCounter_CountUp(t *testing.T) {
 	body := strings.NewReader(form.Encode())
 
 	w := httptest.NewRecorder()
-	r := httptest.NewRequest(
-		http.MethodPost,
-		"/",
-		body,
-	)
+	r := httptest.NewRequest(http.MethodPost, path, body)
 	r.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	controller.PostSimpleCounter(w, r)
@@ -72,11 +68,7 @@ func TestIndexController_PostSimpleCounter_CountDown(t *testing.T) {
 	body := strings.NewReader(form.Encode())
 
 	w := httptest.NewRecorder()
-	r := httptest.NewRequest(
-		http.MethodPost,
-		"/",
-		body,
-	)
+	r := httptest.NewRequest(http.MethodPost, path, body)
 	r.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	controller.PostSimpleCounter(w, r)
