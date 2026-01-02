@@ -6,7 +6,7 @@ toolchain go1.24.1
 
 require (
 	github.com/PuerkitoBio/goquery v1.11.0
-	github.com/a-h/templ v0.3.960
+	github.com/a-h/templ v0.3.977
 )
 
 require (
